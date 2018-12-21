@@ -10,7 +10,7 @@ class Header extends Component {
                     <div className="sticky-header">
                         <div className="container">
                             <div className="header-content d-flex justify-content-between align-items-center">
-                                <div className="corner-ribbon right">Code Fun Do ++</div>
+                                <div className="corner-ribbon right">Code.Fun.Do ++</div>
 
                                 <div className="logo">
                                     <a href="#top" className="smooth"><img src={require("../assets/img/logo.png")} alt="" /></a>
