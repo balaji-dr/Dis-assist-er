@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView} from 'react-native';
-import Weather from "../primary/Weather";
-import AlertCard from "../components/AlertCard";
+import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 
 
-class Home extends Component {
+type Props = {};
+class Profile extends Component<Props> {
 
     static navigationOptions = ({ navigation  }) => ({
             title: "Home",
@@ -20,25 +19,25 @@ class Home extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
-               <Weather/>
-               <AlertCard/>
-            </ScrollView>
+                <Text style={styles.welcome}>Dev mode</Text>
+                <Text style={styles.instructions}>Profile Component</Text>
+            </View>
         );
     }
 }
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#EEF2F5',
     },
     welcome: {

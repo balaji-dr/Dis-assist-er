@@ -4,12 +4,16 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Home from "../screens/Home";
-import {HomeStackNavigator} from "./Stack";
+import {FeedStackNavigator, HomeStackNavigator} from "./Stack";
+import HelpFeed from "../screens/HelpFeed";
+import AskHelp from "../screens/AskHelp";
+import Chat from "../screens/Chat";
+import Profile from "../screens/Profile";
 
 
 const AppTabNavigator = createBottomTabNavigator({
         HelpFeed: {
-            screen: Home,
+            screen: FeedStackNavigator,
             navigationOptions: {
                 tabBarLabel: 'Feed',
                 tabBarIcon: ({ tintColor }) => (
@@ -18,7 +22,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         AskHelp: {
-            screen: Home,
+            screen: AskHelp,
             navigationOptions: {
                 tabBarLabel: 'Ask Help',
                 tabBarIcon: ({ tintColor }) => (
@@ -36,7 +40,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         Chat: {
-            screen: Home,
+            screen: Chat,
             navigationOptions: {
                 tabBarLabel: 'Chat',
                 tabBarIcon: ({ tintColor }) => (
@@ -45,7 +49,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         Profile: {
-            screen: Home,
+            screen: Profile,
             navigationOptions: {
                 tabBarLabel: 'Profile',
                 tabBarIcon: ({ tintColor }) => (
@@ -59,14 +63,14 @@ const AppTabNavigator = createBottomTabNavigator({
         animationEnabled: true,
         tabBarPosition: "bottom",
         tabBarOptions: {
-            activeTintColor: 'blue',
-            inactiveTintColor: 'black',
+            activeTintColor: '#2D3F43',
+            inactiveTintColor: '#A7B6B9',
             showLabel: false,
             labelStyle: {
                 fontSize: 12,
             },
             style: {
-                backgroundColor: 'white',
+                backgroundColor: '#EEF2F5',
             },
         },
     }
