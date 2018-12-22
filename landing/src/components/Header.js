@@ -32,7 +32,7 @@ class Header extends Component {
                                         <a href="#"><i className="fa fa-windows fa-4x"></i></a>
                                         <div>
                                             <a href="">
-                                                Academia Accelerator
+                                                Academia Accelerator <br/><center>Team LazyCoders </center>
                                             </a>
                                         </div>
                                     </div>
