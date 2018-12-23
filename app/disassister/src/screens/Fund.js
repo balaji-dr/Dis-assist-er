@@ -3,10 +3,10 @@ import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 
 
 type Props = {};
-class Profile extends Component<Props> {
+class Fund extends Component<Props> {
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Profile",
+            title: "Funds",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'
@@ -25,13 +25,13 @@ class Profile extends Component<Props> {
                     barStyle="light-content"
                 />
                 <Text style={styles.welcome}>Dev mode</Text>
-                <Text style={styles.instructions}>Profile Component</Text>
+                <Text style={styles.instructions}>Fund Component</Text>
             </View>
         );
     }
 }
 
-export default Profile;
+export default Fund;
 
 const styles = StyleSheet.create({
     container: {

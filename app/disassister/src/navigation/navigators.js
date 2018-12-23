@@ -1,14 +1,75 @@
-import React, {Component} from 'react';
+import React from "react";
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import {createStackNavigator, createAppContainer, createBottomTabNavigator} from "react-navigation";
 import Home from "../screens/Home";
-import {FeedStackNavigator, HomeStackNavigator} from "./navigators";
 import HelpFeed from "../screens/HelpFeed";
-import AskHelp from "../screens/AskHelp";
 import Chat from "../screens/Chat";
+import AskHelp from "../screens/AskHelp";
 import Profile from "../screens/Profile";
+import Fund from "../screens/Fund";
+
+
+const HomeStack = createStackNavigator({
+    Home: Home,
+    Alert: Home,
+    Weather: Home
+},{
+    initialRouteName: "Home",
+    headerMode: 'float',
+});
+
+
+const FeedStack = createStackNavigator({
+    Feed: HelpFeed
+},{
+    initialRouteName: "Feed",
+    headerMode: 'float'
+});
+
+
+const FundStack = createStackNavigator({
+    Fund: Fund
+},{
+    initialRouteName: "Fund",
+    headerMode: 'float'
+});
+
+
+const ChatStack = createStackNavigator({
+    Chat: {
+        screen: Chat
+    }
+}, {
+    initialRouteName: "Chat",
+    headerMode: 'float',
+});
+
+const ProfileStack = createStackNavigator({
+    Profile: {
+        screen: Profile
+    }
+}, {
+    initialRouteName: "Profile",
+    headerMode: 'float',
+});
+
+const HelpStack = createStackNavigator({
+    Help: {
+        screen: AskHelp
+    }
+}, {
+    initialRouteName: "Help",
+    headerMode: 'float',
+});
+
+
+export const HomeStackNavigator = createAppContainer(HomeStack);
+export const FeedStackNavigator = createAppContainer(FeedStack);
+export const ChatStackNavigator = createAppContainer(ChatStack);
+export const FundStackNavigator = createAppContainer(FundStack);
+export const ProfileStackNavigator = createAppContainer(ProfileStack);
+export const HelpStackNavigator = createAppContainer(HelpStack);
 
 
 const AppTabNavigator = createBottomTabNavigator({
@@ -22,7 +83,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         AskHelp: {
-            screen: AskHelp,
+            screen: HelpStackNavigator,
             navigationOptions: {
                 tabBarLabel: 'Ask Help',
                 tabBarIcon: ({ tintColor }) => (
@@ -39,17 +100,17 @@ const AppTabNavigator = createBottomTabNavigator({
                 )
             }
         },
-        Chat: {
-            screen: Chat,
+        Fund: {
+            screen: FundStackNavigator,
             navigationOptions: {
-                tabBarLabel: 'Chat',
+                tabBarLabel: 'Fund',
                 tabBarIcon: ({ tintColor }) => (
-                    <Ionicons name="md-chatboxes" size={35} color={tintColor}/>
+                    <Ionicons name="md-cash" size={35} color={tintColor}/>
                 )
             }
         },
         Profile: {
-            screen: Profile,
+            screen: ProfileStackNavigator,
             navigationOptions: {
                 tabBarLabel: 'Profile',
                 tabBarIcon: ({ tintColor }) => (
@@ -76,5 +137,18 @@ const AppTabNavigator = createBottomTabNavigator({
     }
 );
 
-export const AppTab = createAppContainer(AppTabNavigator);
 
+
+
+const AppStack = createStackNavigator({
+    Apps: {
+        screen: createAppContainer(AppTabNavigator),
+    },
+    AppChat: ChatStackNavigator
+}, {
+    headerMode: 'none'
+});
+
+
+
+export const AppStackNav = createAppContainer(AppStack);

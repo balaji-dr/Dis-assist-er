@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
 import { DirectLine } from "botframework-directlinejs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 const directLine = new DirectLine({
     secret: "YOUR_SECRET_GOES_HERE"
 });
@@ -36,11 +38,18 @@ export default class Chat extends React.Component {
     }
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Home",
+            title: "Chat Bot",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'
             },
+            headerLeft: (
+                <View>
+                    <Ionicons name="md-arrow-back" size={30} onPress={()=>navigation.navigate("Apps")}
+                              style={{marginLeft:15}} color={"white"}/>
+                </View>
+            ),
+            headerMode: 'float',
             tabBarVisible: false
 
         }

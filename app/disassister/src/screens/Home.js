@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity} from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Weather from "../primary/Weather";
 import AlertCard from "../components/AlertCard";
 
@@ -12,6 +13,11 @@ class Home extends Component {
             headerStyle: {
                 backgroundColor: '#2D3F43'
             },
+            headerRight: (
+                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("AppChat")}>
+                    <Ionicons name="md-chatboxes" size={30} color={"white"}/>
+                </TouchableOpacity>
+            ),
 
         }
     );

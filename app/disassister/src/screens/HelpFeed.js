@@ -9,7 +9,7 @@ class HelpFeed extends Component {
             title: "Help Feed",
             headerTintColor: 'white',
             headerRight: (
-                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("Chat")}>
+                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("Fund")}>
                     <Text style={{color: "white", fontSize: 30}}>
                         &#8377;
                     </Text>
@@ -27,7 +27,7 @@ class HelpFeed extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={{backgroundColor: "#87838B"}}>
                 <StatusBar
                     backgroundColor="#2D3F43"
                     barStyle="light-content"

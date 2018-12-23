@@ -6,7 +6,7 @@ type Props = {};
 class AskHelp extends Component<Props> {
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Home",
+            title: "Ask Help",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'

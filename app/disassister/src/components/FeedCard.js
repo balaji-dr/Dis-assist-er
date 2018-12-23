@@ -12,7 +12,7 @@ class FeedCard extends Component {
                 <CardItem>
                     <Left>
                         <Body>
-                        <Text style={{fontSize: 20}}>{this.props.title}</Text>
+                        <Text style={{fontSize: 20, color: "black"}}>{this.props.title}</Text>
                         <Text note>{this.props.category}</Text>
                         <Text note>{this.props.date}</Text>
                         </Body>
@@ -21,7 +21,7 @@ class FeedCard extends Component {
                 </CardItem>
                 <CardItem>
                     <Body>
-                    <Text style={{fontSize:15}}>
+                    <Text style={{fontSize:15, color: "black"}}>
                         {this.props.description}
                     </Text>
                     </Body>
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
         flex: 0,
         borderRadius:10,
         borderWidth: 1,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
 });
