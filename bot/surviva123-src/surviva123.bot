@@ -1,0 +1,61 @@
+{
+  "name": "surviva123",
+  "padlock": "MeQD4E4bLOzckCg8lhP0NQ==!q9L2H0kyK+PaLwJoIKRgUxe8ud83Bmv1PzqHhlDandMQ6kFV8Q4oQQNcGqhpX/1j",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "c60e574a-c1a1-4b33-b1a8-b76397948473",
+      "subscriptionId": "87167196-e123-4161-8fa5-c3fe86866941",
+      "resourceGroup": "aarok_resource",
+      "serviceName": "surviva123",
+      "type": "abs",
+      "name": "surviva123",
+      "id": "1"
+    },
+    {
+      "connectionString": "aH0dIRvVp2aqz3FaBfzj3Q==!deEkdTS1lyUs7UUmoug6LY9AQBYEVdm/o88o0Sreb/6fiiZ3siiMHLfu7bDddqWgfsBGhQ+j6RH5DxiXKqTufD8hL49caoJRe0ggsSpMur2vE7upa6oklkV4V6geJPyKw08pA0NVSxxnQmDV9kZnA+iURKycWBi2xrWVwE9C8a1VT1Wlv8TfWlgwijry6pYfPtpEqfPLwqJyDzDYwVZ5hA==",
+      "tenantId": "c60e574a-c1a1-4b33-b1a8-b76397948473",
+      "subscriptionId": "87167196-e123-4161-8fa5-c3fe86866941",
+      "resourceGroup": "aarok_resource",
+      "serviceName": "surviva123924e",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "75e838c8-06db-4ba9-a2a1-46b095a24cfa",
+      "appPassword": "r5g+b9cT7zCEB0z6Q08mOg==!ThldRGHJJpX0UqF/z0rFiO0N2UWOhy86GqGAsHLx/dA=",
+      "endpoint": "https://surviva123.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "instrumentationKey": "GW11wi4o2VJ8q8MZgcF6TA==!97iEudcoqm0j3eOB7aQs3JULWBQNJEO1eRvXKewunFX1HR6clN7zil2Xj7AYMzN6",
+      "applicationId": "4ad76717-163c-4796-b7d2-368f9c4eaf0d",
+      "apiKeys": {},
+      "tenantId": "c60e574a-c1a1-4b33-b1a8-b76397948473",
+      "subscriptionId": "87167196-e123-4161-8fa5-c3fe86866941",
+      "resourceGroup": "aarok_resource",
+      "serviceName": "surviva123iez7oy",
+      "type": "appInsights",
+      "id": "5"
+    },
+    {
+      "appId": "38fe4997-5d54-469b-8ce8-53588311393e",
+      "authoringKey": "wAiw6t7WVyi4kP6O6j/OcA==!mahzx827gjApLmoIaeJ8jFd/+4MIUypYHCvNaSuj21HCyfCtuWm6301KCOC1sVX4",
+      "version": "0.1",
+      "region": "westus",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "6"
+    }
+  ]
+}

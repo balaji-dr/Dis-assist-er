@@ -5,7 +5,7 @@ import { DirectLine } from "botframework-directlinejs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const directLine = new DirectLine({
-    secret: "YOUR_SECRET_GOES_HERE"
+    secret: "89Uh2vIgA34.cwA.fFU.j7odfOXr-ezq1Im-7w9ph-nRWZu8KBXvVLdf09Tsi6g"
 });
 const botMessageToGiftedMessage = botMessage => ({
     ...botMessage,
