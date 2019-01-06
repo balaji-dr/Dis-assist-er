@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
-
+import {Platform, StyleSheet, Text, View, StatusBar, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
+let window = Dimensions.get('window');
+import { human } from 'react-native-typography'
+import UserFeed from "../primary/UserFeed";
 
 type Props = {};
 class Profile extends Component<Props> {
@@ -24,8 +27,17 @@ class Profile extends Component<Props> {
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
-                <Text style={styles.welcome}>Dev mode</Text>
-                <Text style={styles.instructions}>Profile Component</Text>
+                <View style={styles.personblock}>
+                    <View style={{position: 'absolute', alignSelf: "flex-end"}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate("SignedOut")}>
+                            <Ionicons name="md-exit" size={33} color={"white"} style={{alignSelf: 'center', marginRight: 20, marginTop: 7}}/>
+                        </TouchableOpacity>
+                    </View>
+                    <Ionicons name="md-person" size={140} color={"white"} style={{alignSelf: 'center'}}/>
+                    <Text style={[{color: "white", alignSelf: 'center', fontSize: 17,  marginBottom: 15}, human.calloutWhite]}>drbalaji97@gmail.com</Text>
+                </View>
+
+                <UserFeed/>
             </View>
         );
     }
@@ -36,18 +48,11 @@ export default Profile;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#EEF2F5',
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    personblock: {
+        alignContent: 'center',
+        backgroundColor: "#2D3F43",
+        width: window.width
+    }
 });

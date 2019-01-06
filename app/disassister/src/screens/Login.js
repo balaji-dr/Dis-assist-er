@@ -1,23 +1,17 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, TouchableOpacity, Alert} from 'react-native';
-import HelpForm from "../components/HelpForm";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
+import LoginButtons from "../components/LoginButtons";
 
 
 type Props = {};
-class AskHelp extends Component<Props> {
+class Login extends Component<Props> {
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Ask Help",
+            title: "Login",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'
             },
-            headerRight: (
-                <TouchableOpacity style={{marginRight: 22}} onPress={() => Alert.alert("QnA Bot")}>
-                    <Ionicons name="md-text" size={30} color={"white"}/>
-                </TouchableOpacity>
-            ),
 
         }
     );
@@ -31,17 +25,29 @@ class AskHelp extends Component<Props> {
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
-                <HelpForm/>
+                <LoginButtons/>
             </View>
         );
     }
 }
 
-export default AskHelp;
+export default Login;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#EEF2F5',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
     },
 });

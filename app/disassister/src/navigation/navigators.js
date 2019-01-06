@@ -8,7 +8,11 @@ import Chat from "../screens/Chat";
 import AskHelp from "../screens/AskHelp";
 import Profile from "../screens/Profile";
 import Fund from "../screens/Fund";
-
+import Login from "../screens/Login";
+import {AskHelpSwitchNav} from "./Switch";
+import {isSignedIn} from "../utils/functions";
+import CheckAskHelp from "../secondary/CheckAskHelp";
+import CheckProfile from "../secondary/CheckProfile";
 
 const HomeStack = createStackNavigator({
     Home: Home,
@@ -51,7 +55,7 @@ const ProfileStack = createStackNavigator({
     }
 }, {
     initialRouteName: "Profile",
-    headerMode: 'float',
+    headerMode: 'none',
 });
 
 const HelpStack = createStackNavigator({
@@ -83,7 +87,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         AskHelp: {
-            screen: HelpStackNavigator,
+            screen: CheckAskHelp,
             navigationOptions: {
                 tabBarLabel: 'Ask Help',
                 tabBarIcon: ({ tintColor }) => (
@@ -110,7 +114,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         Profile: {
-            screen: ProfileStackNavigator,
+            screen: CheckProfile,
             navigationOptions: {
                 tabBarLabel: 'Profile',
                 tabBarIcon: ({ tintColor }) => (
@@ -119,7 +123,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         }
     },
-    {   initialRouteName:"Home",
+    {   initialRouteName:"Profile",
         swipeEnabled: true,
         animationEnabled: true,
         tabBarPosition: "bottom",
