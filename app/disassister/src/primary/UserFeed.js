@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, FlatList} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body, Right, Button } from 'native-base';
-import FeedCard from "../components/FeedCard";
 import OwnFeedCard from "../components/OwnFeedCard";
+import { human } from 'react-native-typography'
 
 
 class UserFeed extends Component {
@@ -42,6 +42,9 @@ class UserFeed extends Component {
                 // }
             >
                 <Content padder>
+                    <Text style={[{alignSelf: 'center'}, human.title3]}>
+                        Your Issues
+                    </Text>
                     <FlatList data={this.state.feedList}
                               renderItem={({item, index}) => (
                                   <OwnFeedCard title={item.title} description={item.description}
@@ -61,21 +64,4 @@ class UserFeed extends Component {
 
 export default UserFeed;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#EEF2F5',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
+

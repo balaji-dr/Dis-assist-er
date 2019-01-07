@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar, TouchableOpacity, Alert} from 'react-native';
 import HelpForm from "../components/HelpForm";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 type Props = {};
 class AskHelp extends Component<Props> {

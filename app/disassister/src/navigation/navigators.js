@@ -123,7 +123,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         }
     },
-    {   initialRouteName:"Profile",
+    {   initialRouteName:"AskHelp",
         swipeEnabled: true,
         animationEnabled: true,
         tabBarPosition: "bottom",

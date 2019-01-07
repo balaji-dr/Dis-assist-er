@@ -60,3 +60,70 @@ export const AlertCardStyles = StyleSheet.create({
         fontWeight: "500"
     }
 });
+
+
+export const HelpFormStyles = StyleSheet.create({
+    card: {
+        flex: 0,
+        borderRadius:10,
+        borderWidth: 1,
+        overflow: 'hidden',
+    },
+    maintitle: {
+        fontSize: 40,
+        marginLeft: 6,
+        marginBottom: 10
+    },
+    title: {
+        fontWeight: "500",
+        fontSize: 20,
+        marginLeft: 6
+    },
+    description: {
+        fontWeight: "500",
+        fontSize: 20,
+        marginLeft: 6
+    },
+    textArea: {
+        borderRadius:10,
+        borderWidth: 1,
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 10
+    },
+    phone: {
+        fontWeight: "500",
+        fontSize: 20,
+        marginLeft: 6,
+        marginBottom: 5,
+        marginTop:10
+    },
+    submit: {
+        width: 200,
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: 'center',
+        marginBottom: 20
+    },
+    location: {
+        fontWeight: "500",
+        fontSize: 20,
+        marginLeft: 6,
+        marginBottom: 5
+    },
+    phoneInput: {
+        marginLeft: 15,
+        marginRight: 15,
+        marginBottom: 15
+    },
+    category: {
+        fontWeight: "500",
+        fontSize: 20,
+        marginLeft: 6
+    },
+    titleInput: {
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 10
+    }
+});

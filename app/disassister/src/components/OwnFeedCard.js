@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar, Image} from 'react-native';
-import { Container, Header, Content, Card, CardItem, Body, Thumbnail, Button, Left } from 'native-base';
+import { Container, Header, Right, Card, CardItem, Body, Thumbnail, Button, Left } from 'native-base';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ToggleSwitch from 'toggle-switch-react-native'
 
@@ -35,7 +35,8 @@ class OwnFeedCard extends Component {
                             <Text style={{marginLeft: 2}}>{this.props.location}</Text>
                         </Button>
 
-
+                    </Left>
+                    <Right>
                         <ToggleSwitch
                             isOn={this.props.solved}
                             onColor='green'
@@ -48,7 +49,7 @@ class OwnFeedCard extends Component {
 
 
 
-                    </Left>
+                    </Right>
                 </CardItem>
             </Card>
 

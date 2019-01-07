@@ -4,7 +4,10 @@ import { Container, Item, Content, Input, Textarea, Icon, Picker, Button, Left }
 import Ionicons from "react-native-vector-icons/Ionicons";
 import PhoneInput from 'react-native-phone-input'
 import { material } from 'react-native-typography'
+import GooglePlacesBox from '../components/GooglePlacesBox';
+import {HelpFormStyles} from "../styles/base";
 
+const styles = HelpFormStyles;
 
 class HelpForm extends Component {
 
@@ -12,22 +15,21 @@ class HelpForm extends Component {
         return (
             <Container>
                 <Content>
-                    <Text style={[{fontSize: 40, marginLeft: 6, marginBottom: 10}, material.headline]}>
+                    <Text style={[styles.maintitle, material.headline]}>
                         What help do you need?
                     </Text>
-                    <Text style={{fontWeight: "500", fontSize: 20, marginLeft: 6}}>
+                    <Text style={styles.title}>
                         Title
                     </Text>
-                    <Item rounded  style={{marginLeft: 5, marginRight: 5, marginBottom: 10}}>
+                    <Item rounded  style={styles.titleInput}>
                         <Input placeholder='Enter Title'/>
                     </Item>
-                    <Text style={{fontWeight: "500", fontSize: 20, marginLeft: 6}}>
+                    <Text style={styles.description}>
                         Description
                     </Text>
-                    <Textarea rowSpan={5} bordered placeholder="Enter Description" style={{ borderRadius:10,
-                        borderWidth: 1, marginLeft: 5, marginRight: 5, marginBottom: 10}}/>
+                    <Textarea rowSpan={5} bordered placeholder="Enter your problem" style={styles.textArea}/>
 
-                    <Text style={{fontWeight: "500", fontSize: 20, marginLeft: 6}}>
+                    <Text style={styles.category}>
                         Category
                     </Text>
                     <Picker
@@ -49,19 +51,21 @@ class HelpForm extends Component {
                     </Picker>
 
 
-                    <Text style={{fontWeight: "500", fontSize: 20, marginLeft: 6}}>
+                    <Text style={styles.location}>
                         Location
                     </Text>
-                    <Item rounded  style={{marginLeft: 5, marginRight: 5, marginBottom: 10}}>
-                        <Input placeholder='Enter location'/>
-                    </Item>
+                    {/*<Item rounded  style={{marginLeft: 5, marginRight: 5, marginBottom: 10}}>*/}
+                        {/*<Input placeholder='Enter location'/>*/}
+                    {/*</Item>*/}
+                    <GooglePlacesBox/>
 
-                    <Text style={{fontWeight: "500", fontSize: 20, marginLeft: 6, marginBottom: 5}}>
+
+                    <Text style={styles.phone}>
                         Phone
                     </Text>
-                    <PhoneInput ref='phone' style={{marginLeft: 15, marginRight: 15, marginBottom: 15}}/>
+                    <PhoneInput initialCountry={"in"} ref='phone' style={styles.phoneInput}/>
 
-                    <Button rounded success onPress={() => alert("pressed")} style={{width: 200, alignSelf: "center",  alignItems: "center", justifyContent: 'center', marginBottom: 20}}>
+                    <Button rounded success onPress={() => alert("pressed")} style={styles.submit}>
                         <Text style={{alignSelf: "center"}}>Submit</Text>
                     </Button>
                 </Content>
@@ -72,11 +76,6 @@ class HelpForm extends Component {
 
 export default HelpForm;
 
-const styles = StyleSheet.create({
-    card: {
-        flex: 0,
-        borderRadius:10,
-        borderWidth: 1,
-        overflow: 'hidden',
-    },
-});
+// const styles = StyleSheet.create({
+//
+// });

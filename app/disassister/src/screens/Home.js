@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacit
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Weather from "../primary/Weather";
 import AlertCard from "../components/AlertCard";
+import News from "../primary/News";
 
 
 class Home extends Component {
@@ -33,6 +34,7 @@ class Home extends Component {
                 />
                <Weather/>
                <AlertCard/>
+                <News/>
             </ScrollView>
         );
     }
