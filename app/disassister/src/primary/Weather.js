@@ -26,7 +26,7 @@ class Weather extends Component {
     render() {
         return (
             <Content>
-                <Text style={styles.heading}>Weekly Weather Update</Text>
+                <Text style={styles.heading}>Weather Update</Text>
                 <FlatList
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}

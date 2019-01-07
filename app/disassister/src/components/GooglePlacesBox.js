@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GOOGLE_PLACES_API_KEY } from 'react-native-dotenv'
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
@@ -26,7 +27,7 @@ class GooglePlacesBox extends Component {
                 getDefaultValue={() => ''}
                 query={{
                     // available options: https://developers.google.com/places/web-service/autocomplete
-                    key: 'AIzaSyDhMP8lnETAyVskVrcJV4aBLNaLjwg9HGw',
+                    key: GOOGLE_PLACES_API_KEY,
                     // key: 'AIzaSyC5EIzwIRVhEdd60uFjJETpFgENqVVMLcc',
                     language: 'en', // language of the results
                     types: '(cities)' // default: 'geocode'
