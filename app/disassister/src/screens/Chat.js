@@ -38,7 +38,7 @@ export default class Chat extends React.Component {
     }
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Chat Bot",
+            title: "Surviva Bot",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'

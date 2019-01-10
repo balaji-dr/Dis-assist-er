@@ -13,12 +13,12 @@ class UserFeed extends Component {
         this.state = {
             refreshing: false,
             feedList:[
-                {title: "Hello1", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma", solved: true},
-                {title: "Hello2", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma", solved: false},
-                {title: "Hello3", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma", solved: true},
+                {title: "Hello", location: "CEG", description: "We need milk powder and water urgently",
+                    date: "12/12/12", status: "Verified", category: "food", solved: true},
+                {title: "Hello", location: "CEG", description: "We need volunteers for cleaning up the fallen trees.",
+                    date: "12/12/12", status: "Verified", category: "Volunteering", solved: false},
+                {title: "Hello", location: "CEG", description: "Electric wires has fallen.",
+                    date: "12/12/12", status: "Verified", category: "Electricity", solved: true},
             ]
         };
     }

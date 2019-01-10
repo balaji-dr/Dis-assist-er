@@ -5,19 +5,18 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator} from
 import Home from "../screens/Home";
 import HelpFeed from "../screens/HelpFeed";
 import Chat from "../screens/Chat";
-import AskHelp from "../screens/AskHelp";
 import Profile from "../screens/Profile";
 import Fund from "../screens/Fund";
-import Login from "../screens/Login";
 import {AskHelpSwitchNav} from "./Switch";
-import {isSignedIn} from "../utils/functions";
-import CheckAskHelp from "../secondary/CheckAskHelp";
 import CheckProfile from "../secondary/CheckProfile";
+import AskHelpHome from "../screens/AskHelpHome";
+import AskHelpForm from "../screens/AskHelpForm";
+import CheckAskHelp from "../secondary/CheckAskHelp";
 
 const HomeStack = createStackNavigator({
     Home: Home,
     Alert: Home,
-    Weather: Home
+    Weather: Home,
 },{
     initialRouteName: "Home",
     headerMode: 'float',
@@ -25,7 +24,8 @@ const HomeStack = createStackNavigator({
 
 
 const FeedStack = createStackNavigator({
-    Feed: HelpFeed
+    Feed: HelpFeed,
+    Feed1: HelpFeed
 },{
     initialRouteName: "Feed",
     headerMode: 'float'
@@ -59,13 +59,21 @@ const ProfileStack = createStackNavigator({
 });
 
 const HelpStack = createStackNavigator({
-    Help: {
-        screen: AskHelp
-    }
+    HelpStackHome: AskHelpHome,
 }, {
-    initialRouteName: "Help",
+    initialRouteName: "HelpStackHome",
     headerMode: 'float',
 });
+
+const HelpFormStack = createStackNavigator({
+    HelpFormStackHome: {
+        screen: AskHelpForm
+    }
+}, {
+    initialRouteName: "HelpFormStackHome",
+    headerMode: 'none',
+});
+
 
 
 export const HomeStackNavigator = createAppContainer(HomeStack);
@@ -74,6 +82,7 @@ export const ChatStackNavigator = createAppContainer(ChatStack);
 export const FundStackNavigator = createAppContainer(FundStack);
 export const ProfileStackNavigator = createAppContainer(ProfileStack);
 export const HelpStackNavigator = createAppContainer(HelpStack);
+export const HelpFormNavigator = createAppContainer(HelpFormStack);
 
 
 const AppTabNavigator = createBottomTabNavigator({
@@ -87,7 +96,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         },
         AskHelp: {
-            screen: CheckAskHelp,
+            screen: HelpStackNavigator,
             navigationOptions: {
                 tabBarLabel: 'Ask Help',
                 tabBarIcon: ({ tintColor }) => (
@@ -123,7 +132,7 @@ const AppTabNavigator = createBottomTabNavigator({
             }
         }
     },
-    {   initialRouteName:"AskHelp",
+    {   initialRouteName:"Home",
         swipeEnabled: true,
         animationEnabled: true,
         tabBarPosition: "bottom",
@@ -148,7 +157,8 @@ const AppStack = createStackNavigator({
     Apps: {
         screen: createAppContainer(AppTabNavigator),
     },
-    AppChat: ChatStackNavigator
+    AppChat: ChatStackNavigator,
+    FormPage: CheckAskHelp
 }, {
     headerMode: 'none'
 });

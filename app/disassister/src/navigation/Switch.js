@@ -4,14 +4,15 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {createAppContainer, createSwitchNavigator} from "react-navigation";
 
 import HelpFeed from "../screens/HelpFeed";
-import AskHelp from "../screens/AskHelp";
+import AskHelpForm from "../screens/AskHelpForm";
 import Profile from "../screens/Profile";
 import Login from "../screens/Login";
-import {HelpStackNavigator, ProfileStackNavigator} from "./navigators";
+import {HelpFormNavigator, ProfileStackNavigator} from "./navigators";
+import HelpForm from "../components/HelpForm";
 
 export const AskHelpSwitch = (signedIn = false) => createAppContainer(createSwitchNavigator({
         SignedIn: {
-            screen: HelpStackNavigator
+            screen: HelpFormNavigator
         },
         SignedOut: {
             screen: Login

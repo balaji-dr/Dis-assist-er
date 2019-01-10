@@ -114,35 +114,38 @@ class LoginButtons extends Component {
     render() {
         return (
             <View>
+                <Text style={{marginBottom: 25, fontSize: 16, alignSelf: 'center'}}>
+                    Help your fellow beings.
+                </Text>
 
-                <GoogleSigninButton
-                    style={{ width: 200, height: 48 }}
-                    size={GoogleSigninButton.Size.Wide}
-                    color={GoogleSigninButton.Color.Dark}
-                    onPress={this.signIn}
-                    disabled={this.state.isSigninInProgress} />
+                <View style={{alignContent: 'center', alignSelf: 'center'}}>
+                    <GoogleSigninButton
+                        style={{ width: 250, height: 50, marginBottom: 20 }}
+                        size={GoogleSigninButton.Size.Wide}
+                        color={GoogleSigninButton.Color.Dark}
+                        onPress={this.signIn}
+                        disabled={this.state.isSigninInProgress} />
 
 
-                <LoginButton
-                onLoginFinished={
-                (error, result) => {
-                if (error) {
-                alert("login has error: " + result.error);
-                } else if (result.isCancelled) {
-                alert("login is cancelled.");
-                } else {
-                AccessToken.getCurrentAccessToken().then(
-                (data) => {
-                console.log(data.accessToken.toString());
-                this.facebook_login(data.accessToken.toString());
-                this.props.navigation.navigate('SignedIn');
-                }
-                )
-                }
-                }
-                }
-                onLogoutFinished={() => alert("logout.")}/>
 
+                    <LoginButton
+                        onLoginFinished={
+                            (error, result) => {
+                                if (error) {
+                                    alert("login has error: " + result.error);
+                                } else if (result.isCancelled) {
+                                    alert("login is cancelled.");
+                                } else {
+                                    AccessToken.getCurrentAccessToken().then(
+                                        (data) => {
+                                            console.log(data.accessToken.toString());
+                                            this.facebook_login(data.accessToken.toString());
+                                            this.props.navigation.navigate('SignedIn');
+                                        })
+                                }}
+                        }
+                        onLogoutFinished={() => alert("logout.")} />
+                </View>
             </View>
         );
     }

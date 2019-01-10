@@ -15,9 +15,9 @@ class HelpForm extends Component {
         return (
             <Container>
                 <Content>
-                    <Text style={[styles.maintitle, material.headline]}>
-                        What help do you need?
-                    </Text>
+                    {/*<Text style={[styles.maintitle, material.headline]}>*/}
+                        {/*What help do you need?*/}
+                    {/*</Text>*/}
                     <Text style={styles.title}>
                         Title
                     </Text>

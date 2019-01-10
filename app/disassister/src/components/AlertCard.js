@@ -16,7 +16,7 @@ class AlertCard extends Component {
                        Alert
                     </Text>
                     <Text style={{color: "white"}}>
-                        Sunny Leone has obliged to be the chief guest for Techofes'19. Click for details.
+                        There is a cyclone alert in your location.
                     </Text>
                     </Body>
                 </CardItem>

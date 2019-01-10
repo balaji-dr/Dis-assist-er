@@ -9,7 +9,7 @@ class HelpFeed extends Component {
             title: "Help Feed",
             headerTintColor: 'white',
             headerRight: (
-                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("Fund")}>
+                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("Feed1")}>
                     <Text style={{color: "white", fontSize: 30}}>
                         &#8377;
                     </Text>

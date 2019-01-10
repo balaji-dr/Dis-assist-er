@@ -11,12 +11,12 @@ class Feed extends Component {
         this.state = {
             refreshing: false,
             feedList:[
-                {title: "Hello", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma"},
-                {title: "Hello", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma"},
-                {title: "Hello", location: "CEG", description: "sunny came to the gallery",
-                    date: "12/12/12", status: "Verified", category: "Gilma"},
+                {title: "Hello", location: "CEG", description: "We need milk powder and water urgently",
+                    date: "12/12/12", status: "Verified", category: "food"},
+                {title: "Hello", location: "CEG", description: "We need volunteers for cleaning up the fallen trees.",
+                    date: "12/12/12", status: "Verified", category: "Volunteering"},
+                {title: "Hello", location: "CEG", description: "Electric wires has fallen.",
+                    date: "12/12/12", status: "Verified", category: "Electricity"},
             ]
         };
     }

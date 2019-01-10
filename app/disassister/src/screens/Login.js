@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, Image} from 'react-native';
 import LoginButtons from "../components/LoginButtons";
 
 
@@ -25,6 +25,10 @@ class Login extends Component<Props> {
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
+                <Image source={require('../assets/images/dis-assist-er.png')} style={{width: 200,
+                    height:270,
+                    resizeMode: 'contain'}}/>
+
                 <LoginButtons/>
             </View>
         );
@@ -39,15 +43,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#EEF2F5',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
     },
 });

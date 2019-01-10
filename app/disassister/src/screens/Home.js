@@ -4,9 +4,37 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Weather from "../primary/Weather";
 import AlertCard from "../components/AlertCard";
 import News from "../primary/News";
+import CheckAskHelp from "../secondary/CheckAskHelp";
+import TwoCard from "../components/TwoCard";
 
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            latitude: null,
+            longitude: null,
+            error: null,
+        };
+    }
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+                });
+            },
+            (error) => this.setState({ error: error.message }),
+            { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
+        );
+    }
+
+
 
     static navigationOptions = ({ navigation  }) => ({
             title: "Home",
@@ -15,8 +43,11 @@ class Home extends Component {
                 backgroundColor: '#2D3F43'
             },
             headerRight: (
-                <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("AppChat")}>
-                    <Ionicons name="md-chatboxes" size={30} color={"white"}/>
+                <TouchableOpacity style={{marginRight: 10}} onPress={() => navigation.navigate("FormPage")}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Ionicons name="md-locate" size={30} color={"white"}/>
+                        <Text style={{color: 'white', fontSize: 17, marginLeft: 5, marginTop: 5}}>Locate</Text>
+                    </View>
                 </TouchableOpacity>
             ),
 
@@ -32,8 +63,10 @@ class Home extends Component {
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
+
                <Weather/>
                <AlertCard/>
+                <TwoCard navigation={this.props.navigation}/>
                 <News/>
             </ScrollView>
         );

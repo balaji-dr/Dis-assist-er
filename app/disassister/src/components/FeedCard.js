@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar, Image} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body, Thumbnail, Button, Left } from 'native-base';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { SharedElement } from 'react-native-motion';
 
 
 class FeedCard extends Component {
@@ -43,6 +44,7 @@ class FeedCard extends Component {
                     </Left>
                 </CardItem>
             </Card>
+
 
         );
     }

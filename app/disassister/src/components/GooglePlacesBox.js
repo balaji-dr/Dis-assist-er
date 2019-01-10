@@ -30,7 +30,7 @@ class GooglePlacesBox extends Component {
                     key: GOOGLE_PLACES_API_KEY,
                     // key: 'AIzaSyC5EIzwIRVhEdd60uFjJETpFgENqVVMLcc',
                     language: 'en', // language of the results
-                    types: '(cities)' // default: 'geocode'
+                    // types: '(cities)' // default: 'geocode'
                 }}
 
                 styles={{
@@ -60,11 +60,10 @@ class GooglePlacesBox extends Component {
                 }}
                 GooglePlacesSearchQuery={{
                     // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-                    rankby: 'distance',
-                    types: 'food'
+                    rankby: 'distance'
                 }}
 
-                filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                // filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
                 // predefinedPlaces={[homePlace, workPlace]}
 
                 debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.

@@ -75,6 +75,7 @@ export const HelpFormStyles = StyleSheet.create({
         marginBottom: 10
     },
     title: {
+        marginTop: 15,
         fontWeight: "500",
         fontSize: 20,
         marginLeft: 6

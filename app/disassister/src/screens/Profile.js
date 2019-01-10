@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, Dimensions, TouchableOpacity, Animated, ScrollView} from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 let window = Dimensions.get('window');
 import { human } from 'react-native-typography'
 import UserFeed from "../primary/UserFeed";
 
+
 type Props = {};
 class Profile extends Component<Props> {
+
+    constructor() {
+        super()
+
+    }
 
     static navigationOptions = ({ navigation  }) => ({
             title: "Profile",
@@ -20,9 +26,13 @@ class Profile extends Component<Props> {
 
 
 
+
     render() {
+
+
         return (
             <View style={styles.container}>
+
                 <StatusBar
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
@@ -37,7 +47,8 @@ class Profile extends Component<Props> {
                     <Text style={[{color: "white", alignSelf: 'center', fontSize: 17,  marginBottom: 15}, human.calloutWhite]}>drbalaji97@gmail.com</Text>
                 </View>
 
-                <UserFeed/>
+                    <UserFeed/>
+
             </View>
         );
     }
@@ -53,6 +64,10 @@ const styles = StyleSheet.create({
     personblock: {
         alignContent: 'center',
         backgroundColor: "#2D3F43",
-        width: window.width
+        width: window.width,
+        borderBottomLeftRadius:70,
+        // borderBottomRightRadius:20,
+        borderWidth: 0,
+
     }
 });
