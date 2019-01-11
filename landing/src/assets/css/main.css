@@ -975,9 +975,9 @@ td, th {
 }
 
 .is-sticky .sticky-header {
-  background: -moz-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: -webkit-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: linear-gradient(to right, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
+  background: -moz-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: -webkit-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: linear-gradient(to right, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
 }
 
 .search {
@@ -1017,7 +1017,7 @@ td, th {
 
 .search-field input {
   line-height: 60px;
-  background: #4a4fad;
+  background: #ac374c;
   width: 600px;
   border: none;
   color: #fff;
@@ -1100,9 +1100,9 @@ td, th {
 }
 
 .banner-area .overlay-bg {
-  background: -moz-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: -webkit-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: linear-gradient(to right, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
+  background: -moz-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: -webkit-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: linear-gradient(to right, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
 }
 
 .signle-service {
@@ -1211,9 +1211,9 @@ td, th {
 }
 
 .single-filter-content .overlay-bg-content {
-  background: -moz-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: -webkit-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: linear-gradient(to right, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
+  background: -moz-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: -webkit-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: linear-gradient(to right, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
   text-align: center;
   padding: 50px 100px;
   opacity: 0;
@@ -1282,9 +1282,9 @@ td, th {
 }
 
 .single-member .thumb .overlay-member {
-  background: -moz-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: -webkit-linear-gradient(left, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
-  background: linear-gradient(to right, rgba(60, 64, 143, 0.95) 0%, rgba(91, 97, 207, 0.95) 100%);
+  background: -moz-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: -webkit-linear-gradient(left, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
+  background: linear-gradient(to right, rgba(172,55,76, 0.95) 0%, rgba(172,55,76, 0.95) 100%);
   text-align: center;
   padding: 30px;
   opacity: 0;
@@ -1352,7 +1352,7 @@ td, th {
   top: 0;
   width: 50%;
   height: 100%;
-  background: #404598;
+  background: #ac374c;
   z-index: 2;
 }
 
@@ -1385,9 +1385,9 @@ td, th {
 }
 
 .single-pricing-table .top {
-  background-image: -moz-linear-gradient(0deg, #3c408f 0%, #5b61cf 100%);
-  background-image: -webkit-linear-gradient(0deg, #3c408f 0%, #5b61cf 100%);
-  background-image: -ms-linear-gradient(0deg, #3c408f 0%, #5b61cf 100%);
+  background-image: -moz-linear-gradient(0deg, #ac374c 0%, #ac374c 100%);
+  background-image: -webkit-linear-gradient(0deg, #ac374c 0%, #ac374c 100%);
+  background-image: -ms-linear-gradient(0deg, #ac374c 0%, #ac374c 100%);
 }
 
 .single-pricing-table .top .head {
@@ -1528,7 +1528,7 @@ td, th {
 }
 
 .cta-area {
-  background: #3d4191;
+  background: #ac374c;
   padding: 60px 0;
 }
 

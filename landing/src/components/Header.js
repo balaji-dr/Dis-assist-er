@@ -12,9 +12,16 @@ class Header extends Component {
                             <div className="header-content d-flex justify-content-between align-items-center">
                                 <div className="corner-ribbon right">Code.Fun.Do ++</div>
 
-                                <div className="logo">
-                                    <a href="#top" className="smooth"><img src={require("../assets/img/logo.png")} alt="" /></a>
+                                <div className="logo" style={{flexDirection: 'row', flex: 0}}>
+                                    <div>
+                                        <a href="#top" className="smooth"><img src={require("../assets/img/logo (1).png")} alt="" style={{width: 80, height: 70}} /></a>
+                                    </div>
                                 </div>
+                                <div style={{color: 'white', fontSize: 25, marginRight: 400, visibility: window.innerWidth <= 700 ? 'hidden' : 'visible'}}>
+                                    Dis - assist - er
+                                </div>
+
+
                                 <div className="right-bar d-flex align-items-center">
                                     <nav className="d-flex align-items-center">
                                         {/*<ul className="main-menu">*/}
