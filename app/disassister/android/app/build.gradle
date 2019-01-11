@@ -137,7 +137,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-android-location-enabler')
     compile project(':react-native-fbsdk')
     compile project(':react-native-google-signin')
     compile project(':react-native-vector-icons')
