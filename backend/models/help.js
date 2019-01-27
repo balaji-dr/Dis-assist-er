@@ -27,9 +27,7 @@ const HelpSchema = new Schema({
     emotion: Number,
     location: {
         type: String,
-        required: [true,'Location is required']
-    },
-    time: String
+    }
 }, {timestamps: true});
 
 const Help = mongoose.model('help', HelpSchema);

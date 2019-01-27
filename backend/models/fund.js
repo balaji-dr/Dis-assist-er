@@ -3,12 +3,10 @@ const Schema = mongoose.Schema;
 
 const FundSchema = new Schema({
     description: {
-        type:String,
-        required: [true,'Content is required']
+        type:String
     },
     title:{
-        type:String,
-        required: [true,'Title is required']
+        type:String
     },
     link:{
         type: String

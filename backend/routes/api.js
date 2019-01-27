@@ -113,11 +113,11 @@ router.get('/deleteHelpById/:id', function (req, res, next) {
 
 router.post('/addHelp',async function(req,res,next){
     var email = "";
-    var currentTime = Date();
-    currentTime = currentTime.toString().slice(4,24);
     var emotionScore = 0;
     var title = null;
     var desc = null;
+    var location = "";
+    var coordinates = req.body.coordinates;
     if(req.body.title!=null)
         title = req.body.title;
     if(req.body.probDesc!=null){
@@ -141,7 +141,9 @@ router.post('/addHelp',async function(req,res,next){
             }
         });    
     }
-    
+    await getLocation(coordinates,function(locality){
+        location = locality;
+    });
     await verifyToken(req.headers['x-access-token'],function(profile){
         email = profile.email;
         var visible = true;
@@ -158,9 +160,8 @@ router.post('/addHelp',async function(req,res,next){
                 visible: visible,
 		        coordinates: req.body.coordinates,
 		        helpMode: req.body.helpMode,
-                location: req.body.location,
+                location: location,
                 contact: req.body.contact,
-                time: currentTime,
                 email: email			
             }).then(function (details) {
                     res.send({status: true, details: details});
@@ -506,17 +507,37 @@ router.get('/getLocation',async function(req,res,next){
     var la = req.body.lat;
     var lo = req.body.lon;
     var mapTemp = "" ;
-    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDhMP8lnETAyVskVrcJV4aBLNaLjwg9HGw').then(function(response){
+    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
         mapTemp=response;
-        console.log(mapTemp);
+        //console.log(mapTemp);
     });
-    for (let address of mapTemp.results[0].address_components) {
-        console.log(address);
+    for (let address of mapTemp.data.results[0].address_components) {
+        //console.log(address);
         if(address.types.indexOf("sublocality") > -1){
             sublocality.push(address.long_name);
         }
     }
-    res.send(sublocality);
+    var locality = sublocality.join();
+    res.send({status: true,locality: locality});
 });
+
+async function getLocation(coordinates,callback){
+    var sublocality = [];
+    var mapTemp = "" ;
+    var la = coordinates.lat;
+    var lo = coordinates.long;
+    var locality = "";
+    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
+        mapTemp=response;
+        for (let address of mapTemp.data.results[0].address_components) {
+            if(address.types.indexOf("sublocality") > -1){
+                sublocality.push(address.long_name);
+            }
+        }
+        locality = sublocality.join();
+        console.log("In function"+locality);
+        callback(locality);
+    });
+}
 
 module.exports = router;
