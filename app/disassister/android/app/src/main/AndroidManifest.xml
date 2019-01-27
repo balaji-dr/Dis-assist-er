@@ -4,11 +4,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+            android:required="true"
+            android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission
+            android:required="true"
+            android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@mipmap/icon"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
       <activity
@@ -24,6 +30,9 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
                    android:value="@string/facebook_app_id"/>
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDhMP8lnETAyVskVrcJV4aBLNaLjwg9HGw"/>
 
     </application>
 

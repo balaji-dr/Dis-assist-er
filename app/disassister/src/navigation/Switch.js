@@ -9,23 +9,24 @@ import Profile from "../screens/Profile";
 import Login from "../screens/Login";
 import {HelpFormNavigator, ProfileStackNavigator} from "./navigators";
 import HelpForm from "../components/HelpForm";
+import Login_Dup from "../screens/Login_Dup";
 
 export const AskHelpSwitch = (signedIn = false) => createAppContainer(createSwitchNavigator({
-        SignedIn: {
+        HelpSignedIn: {
             screen: HelpFormNavigator
         },
         SignedOut: {
-            screen: Login
+            screen: Login_Dup
         }
     },
     {
-        initialRouteName: signedIn ? 'SignedIn' : 'SignedOut'
+        initialRouteName: signedIn ? 'HelpSignedIn' : 'SignedOut'
     })
 );
 
 
 export const ProfileSwitch = (signedIn = false) => createAppContainer(createSwitchNavigator({
-        SignedIn: {
+        ProfileSignedIn: {
             screen: ProfileStackNavigator
         },
         SignedOut: {
@@ -33,7 +34,7 @@ export const ProfileSwitch = (signedIn = false) => createAppContainer(createSwit
         }
     },
     {
-        initialRouteName: signedIn ? 'SignedIn' : 'SignedOut'
+        initialRouteName: signedIn ? 'ProfileSignedIn' : 'SignedOut'
     })
 );
 

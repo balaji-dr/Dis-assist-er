@@ -2,6 +2,7 @@ package com.disassister;
 import android.content.Intent;
 
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen;
 
 
 import com.facebook.react.ReactActivityDelegate;
@@ -23,6 +24,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
+        SplashScreen.show(this);
         return "disassister";
     }
 

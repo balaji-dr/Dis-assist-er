@@ -5,6 +5,7 @@ let window = Dimensions.get('window');
 export const WeatherCardStyles = StyleSheet.create({
     card: {
         marginLeft:10,
+        marginTop:10,
         width: window.width/1.5,
         height: window.height/4,
         borderRadius:10,
@@ -17,7 +18,7 @@ export const WeatherCardStyles = StyleSheet.create({
         marginLeft: 10
     },
     degree: {
-        fontSize: 60,
+        fontSize: 40,
         color: "white",
         marginTop: 10
     },
@@ -39,7 +40,8 @@ export const WeatherCardStyles = StyleSheet.create({
         fontWeight: "500",
         marginLeft: 10,
         fontSize: 16,
-        color: "black"
+        color: "black",
+        // alignSelf: 'center'
     }
 });
 
@@ -104,7 +106,8 @@ export const HelpFormStyles = StyleSheet.create({
         alignSelf: "center",
         alignItems: "center",
         justifyContent: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        marginTop: 10,
     },
     location: {
         fontWeight: "500",
@@ -120,7 +123,8 @@ export const HelpFormStyles = StyleSheet.create({
     category: {
         fontWeight: "500",
         fontSize: 20,
-        marginLeft: 6
+        marginLeft: 6,
+        marginTop: 10
     },
     titleInput: {
         marginLeft: 5,

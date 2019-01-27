@@ -17,23 +17,23 @@ class Weather extends Component {
         };
     }
 
-    _renderCard(){
+    _renderCard(item){
         return(
-            <WeatherCard />
+            <WeatherCard item={item}/>
         )
     }
+
 
     render() {
         return (
             <Content>
-                <Text style={styles.heading}>Weather Update</Text>
                 <FlatList
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={this.state.weatherInfo}
+                    data={this.props.datalist.response}
                     renderItem={({item}) => this._renderCard(item)}
                     keyExtractor={(item, index) => index.toString()}
-                    key={(item, index) => item.index.toString() }
+                    key={(item, index) => item.date }
                 />
             </Content>
         );

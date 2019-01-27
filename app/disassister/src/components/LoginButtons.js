@@ -3,7 +3,8 @@ import {LoginButton, AccessToken} from 'react-native-fbsdk';
 import React,{Component} from "react";
 import {Platform, StyleSheet, Text, View, StatusBar} from 'react-native';
 import {AsyncStorage} from "react-native";
-
+import axios from "axios";
+import {GOOGLE_LOGIN} from "../store/API";
 
 class LoginButtons extends Component {
 
@@ -26,8 +27,8 @@ class LoginButtons extends Component {
 
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/userinfo.email'], // what API you want to access on behalf of the user, default is email and profile
-            iosClientId: '642914527835-rsv6tkadak3vfbqaq9sl1iudbghs4781.apps.googleusercontent.com', // only for iOS
-            webClientId: '642914527835-m65sfnm3h1hr05l0s3tcec9bcal6qc4i.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+            // iosClientId: '642914527835-rsv6tkadak3vfbqaq9sl1iudbghs4781.apps.googleusercontent.com', // only for iOS
+            webClientId: '2922085007-1hsp75em7n8h6qh602i8mk17njl0lqt5.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
             offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
             hostedDomain: '', // specifies a hosted domain restriction
             forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login
@@ -43,20 +44,16 @@ class LoginButtons extends Component {
             this.setState({ userInfo:userInfo });
             console.log(userInfo);
 
-            axios.post(LoginURL, {
-                client_id: ClientId,
-                client_secret: ClientSecret,
-                backend: "google-oauth2",
-                grant_type: "convert_token",
-                token: userInfo.accessToken
+            axios.post(GOOGLE_LOGIN, {
+
+                accessToken: userInfo.accessToken
             })
                 .then((response) => {
                     if (response.status === 200){
 
                         console.log(response.data);
-                        AsyncStorage.setItem("access_token", response.data.access_token);
-                        AsyncStorage.setItem("refresh_token", response.data.refresh_token);
-                        this.props.navigation.navigate('SignedIn')
+                        AsyncStorage.setItem("token", response.data.details.token);
+                        this.props.navigation.navigate('ProfileSignedIn')
 
                     }
                     else {
@@ -128,23 +125,23 @@ class LoginButtons extends Component {
 
 
 
-                    <LoginButton
-                        onLoginFinished={
-                            (error, result) => {
-                                if (error) {
-                                    alert("login has error: " + result.error);
-                                } else if (result.isCancelled) {
-                                    alert("login is cancelled.");
-                                } else {
-                                    AccessToken.getCurrentAccessToken().then(
-                                        (data) => {
-                                            console.log(data.accessToken.toString());
-                                            this.facebook_login(data.accessToken.toString());
-                                            this.props.navigation.navigate('SignedIn');
-                                        })
-                                }}
-                        }
-                        onLogoutFinished={() => alert("logout.")} />
+                    {/*<LoginButton*/}
+                        {/*onLoginFinished={*/}
+                            {/*(error, result) => {*/}
+                                {/*if (error) {*/}
+                                    {/*alert("login has error: " + result.error);*/}
+                                {/*} else if (result.isCancelled) {*/}
+                                    {/*alert("login is cancelled.");*/}
+                                {/*} else {*/}
+                                    {/*AccessToken.getCurrentAccessToken().then(*/}
+                                        {/*(data) => {*/}
+                                            {/*console.log(data.accessToken.toString());*/}
+                                            {/*this.facebook_login(data.accessToken.toString());*/}
+                                            {/*this.props.navigation.navigate('SignedIn');*/}
+                                        {/*})*/}
+                                {/*}}*/}
+                        {/*}*/}
+                        {/*onLogoutFinished={() => alert("logout.")} />*/}
                 </View>
             </View>
         );

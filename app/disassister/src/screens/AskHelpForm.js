@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, TouchableOpacity, Alert, Dimensions, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, TouchableOpacity, Image, Alert, Dimensions, ScrollView} from 'react-native';
 import HelpForm from "../components/HelpForm";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {human} from "react-native-typography/dist/index";
@@ -31,10 +31,11 @@ class AskHelpForm extends Component<Props> {
                             <Ionicons name="md-arrow-back" size={30} color={"white"} style={{alignSelf: 'center', marginLeft: 17, marginTop: 10}}/>
                         </TouchableOpacity>
                     </View>
-                    <Ionicons name="md-help-circle" size={140} color={"white"} style={{alignSelf: 'center'}}/>
+                    {/*<Ionicons name="md-help-circle" size={140} color={"white"} style={{alignSelf: 'center'}}/>*/}
+                    <Image source={require("../assets/images/formlogo.png")} style={{alignSelf: 'center', width: 200, height: 200}}/>
                     <Text style={[{color: "white", alignSelf: 'center', fontSize: 17,  marginBottom: 15}, human.calloutWhite]}>How can we help you?</Text>
                 </View>
-                <HelpForm/>
+                <HelpForm navigation={this.props.navigation}/>
                 </ScrollView>
             </View>
         );

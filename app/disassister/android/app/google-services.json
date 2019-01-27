@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "2922085007",
+    "firebase_url": "https://codefundo-b2592.firebaseio.com",
+    "project_id": "codefundo-b2592",
+    "storage_bucket": "codefundo-b2592.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2922085007:android:d55ec3a18080d477",
+        "android_client_info": {
+          "package_name": "com.disassister"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2922085007-hbbumvfj4fjaidok4lfdk2cdld6ncjvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.disassister",
+            "certificate_hash": "9bb0825ec8f827f4aac515dd2dade245cd0f7d25"
+          }
+        },
+        {
+          "client_id": "2922085007-1hsp75em7n8h6qh602i8mk17njl0lqt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1qTOhhRmoI3Uq_8WFe6yF1InvzJ8FUUo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2922085007-1hsp75em7n8h6qh602i8mk17njl0lqt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

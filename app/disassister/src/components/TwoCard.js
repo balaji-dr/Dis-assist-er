@@ -16,7 +16,7 @@ class TwoCard extends Component {
                 <CardItem style={{backgroundColor: "black"}}>
                     <Body>
                     <Text style={[styles.info, human.title2White]}>
-                        Ask Help
+                        Help
                     </Text>
                     <TouchableOpacity style={{alignSelf: 'center'}} onPress={() => this.props.navigation.navigate("FormPage")}>
                         <Ionicons name="md-help-buoy" size={80} color={"white"} />

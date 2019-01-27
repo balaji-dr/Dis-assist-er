@@ -9,7 +9,7 @@ import Profile from "../screens/Profile";
 import Fund from "../screens/Fund";
 import {AskHelpSwitchNav} from "./Switch";
 import CheckProfile from "../secondary/CheckProfile";
-import AskHelpHome from "../screens/AskHelpHome";
+import Maps from "../screens/Maps";
 import AskHelpForm from "../screens/AskHelpForm";
 import CheckAskHelp from "../secondary/CheckAskHelp";
 
@@ -59,20 +59,13 @@ const ProfileStack = createStackNavigator({
 });
 
 const HelpStack = createStackNavigator({
-    HelpStackHome: AskHelpHome,
+    HelpStackHome: Maps,
 }, {
     initialRouteName: "HelpStackHome",
     headerMode: 'float',
 });
 
-const HelpFormStack = createStackNavigator({
-    HelpFormStackHome: {
-        screen: AskHelpForm
-    }
-}, {
-    initialRouteName: "HelpFormStackHome",
-    headerMode: 'none',
-});
+
 
 
 
@@ -82,7 +75,6 @@ export const ChatStackNavigator = createAppContainer(ChatStack);
 export const FundStackNavigator = createAppContainer(FundStack);
 export const ProfileStackNavigator = createAppContainer(ProfileStack);
 export const HelpStackNavigator = createAppContainer(HelpStack);
-export const HelpFormNavigator = createAppContainer(HelpFormStack);
 
 
 const AppTabNavigator = createBottomTabNavigator({
@@ -95,12 +87,12 @@ const AppTabNavigator = createBottomTabNavigator({
                 )
             }
         },
-        AskHelp: {
+        Maps: {
             screen: HelpStackNavigator,
             navigationOptions: {
-                tabBarLabel: 'Ask Help',
+                tabBarLabel: 'Map',
                 tabBarIcon: ({ tintColor }) => (
-                    <Ionicons name="md-help-buoy" size={35} color={tintColor}/>
+                    <Ionicons name="md-map" size={35} color={tintColor}/>
                 )
             }
         },
@@ -150,6 +142,18 @@ const AppTabNavigator = createBottomTabNavigator({
     }
 );
 
+const HelpFormStack = createStackNavigator({
+    HelpFormStackHome: {
+        screen: AskHelpForm
+    },
+    AppMain: {
+        screen: createAppContainer(AppTabNavigator)
+    }
+}, {
+    initialRouteName: "HelpFormStackHome",
+    headerMode: 'none',
+});
+export const HelpFormNavigator = createAppContainer(HelpFormStack);
 
 
 

@@ -21,7 +21,7 @@ export default class CheckAskHelp extends React.Component {
 
     render() {
         const { checkedSignIn, signedIn } = this.state;
-        const Layout = AskHelpSwitch(true);
+        const Layout = AskHelpSwitch(signedIn);
         if(checkedSignIn){
             return(
                 <Layout />

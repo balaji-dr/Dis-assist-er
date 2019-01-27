@@ -21,7 +21,7 @@ export default class CheckProfile extends React.Component {
 
     render() {
         const { checkedSignIn, signedIn } = this.state;
-        const Layout = ProfileSwitch(true);
+        const Layout = ProfileSwitch(signedIn);
         if(checkedSignIn){
             return(
                 <Layout />

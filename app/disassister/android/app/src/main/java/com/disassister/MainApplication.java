@@ -3,6 +3,9 @@ package com.disassister;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -37,6 +40,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SplashScreenReactPackage(),
+            new MapsPackage(),
+            new RNAndroidLocationEnablerPackage(),
             new FBSDKPackage(mCallbackManager),
             new RNGoogleSigninPackage(),
             new VectorIconsPackage(),

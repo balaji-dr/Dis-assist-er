@@ -29,7 +29,7 @@ class Login extends Component<Props> {
                     height:270,
                     resizeMode: 'contain'}}/>
 
-                <LoginButtons/>
+                <LoginButtons navigation={this.props.navigation}/>
             </View>
         );
     }
