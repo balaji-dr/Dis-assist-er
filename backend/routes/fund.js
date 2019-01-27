@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express.Router();
-const Ninja = require('../models/fund.js');
+const Fund = require('../models/fund.js');
 const multer = require('multer');
 
 var imageStorage = multer.diskStorage({
@@ -32,7 +32,7 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
         time: currentTime
     } 
 
-    Ninja.create(formData).then(function(details){
+    Fund.create(formData).then(function(details){
         res.send(details);
     }).catch(function(err){
         res.send(err);
@@ -40,8 +40,8 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
 });
 
 router.get('/getFund', function (req, res, next) {
-    Ninja.find({}).sort({createdAt: -1}).then(function (details) {
-        res.send({details: details});
+    Fund.find({}).sort({createdAt: -1}).then(function (details) {
+        res.send({status: true, details: details});
     }).catch(next);
 });
 

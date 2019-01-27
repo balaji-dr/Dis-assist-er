@@ -167,7 +167,6 @@ router.post('/addHelp',async function(req,res,next){
             }).catch(next);
         }
     });
-    
 });
 
 //**********************DISASTER ALERTS**********************
@@ -499,5 +498,25 @@ async function weathers(la,lo){
         }
     }); 
 }
+
+/******************************location****************************/
+router.get('/getLocation',async function(req,res,next){
+    //res.send(mapTemp.results[0].address_components);
+    var sublocality = [];
+    var la = req.body.lat;
+    var lo = req.body.lon;
+    var mapTemp = "" ;
+    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDhMP8lnETAyVskVrcJV4aBLNaLjwg9HGw').then(function(response){
+        mapTemp=response;
+        console.log(mapTemp);
+    });
+    for (let address of mapTemp.results[0].address_components) {
+        console.log(address);
+        if(address.types.indexOf("sublocality") > -1){
+            sublocality.push(address.long_name);
+        }
+    }
+    res.send(sublocality);
+});
 
 module.exports = router;
