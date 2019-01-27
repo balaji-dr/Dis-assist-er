@@ -4,11 +4,9 @@ const Schema = mongoose.Schema;
 const HelpSchema = new Schema({
     probTitle: {
         type: String,
-        required: [true,'Title is required']
     },
     probType: {
         type: String,
-        //required: [true,'Type is required']
     },
     probDesc:{
         type: String

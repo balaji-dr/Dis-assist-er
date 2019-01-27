@@ -41,7 +41,7 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
 
 router.get('/getFund', function (req, res, next) {
     Ninja.find({}).sort({createdAt: -1}).then(function (details) {
-        res.send(details);
+        res.send({details: details});
     }).catch(next);
 });
 

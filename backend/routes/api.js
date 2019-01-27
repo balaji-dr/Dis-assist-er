@@ -54,6 +54,9 @@ router.get('/getHelp', function (req, res, next) {
     Help.find({}).sort({createdAt: -1}).then(function (details) {
         res.send({status: true, details: details});
     }).catch(next);
+    // if(req.body.prob == ""){
+    //     console.log("prob empty");
+    // }
 });
 
 router.get('/getHelpByUser', async function (req, res, next) {
@@ -109,31 +112,36 @@ router.get('/deleteHelpById/:id', function (req, res, next) {
 
 
 router.post('/addHelp',async function(req,res,next){
-    let documents = {
-        'documents': [{
-            'id': '1',
-            'language': 'en',
-            'text': req.body.probDesc 
-        }]
-    };
     var email = "";
-    var emotionScore = 0;
     var currentTime = Date();
     currentTime = currentTime.toString().slice(4,24);
-
-    instanceDisaster.defaults.headers.common['Ocp-Apim-Subscription-Key'] = '810e478db8d14548aa32f228c027725a';
-
-    await instanceSent.post('/',documents).then(function(response){
-        //console.log(response.data.documents[0].score);
-        emotionScore = response.data.documents[0].score;
-        //res.status(200).send(response.data.documents[0].score.toString());
-    }).catch(function(err){
-        if(err.response){
-            console.log(err.response.data);
-            res.send({status: false, error: "Unable to retrieve sentiments"});
-        }
-    });
-
+    var emotionScore = 0;
+    var title = null;
+    var desc = null;
+    if(req.body.title!=null)
+        title = req.body.title;
+    if(req.body.probDesc!=null){
+        let documents = {
+            'documents': [{
+                'id': '1',
+                'language': 'en',
+                'text': req.body.probDesc 
+            }]
+        }; 
+        desc = req.body.probDesc;
+        instanceDisaster.defaults.headers.common['Ocp-Apim-Subscription-Key'] = '810e478db8d14548aa32f228c027725a';
+        await instanceSent.post('/',documents).then(function(response){
+            //console.log(response.data.documents[0].score);
+            emotionScore = response.data.documents[0].score;
+            //res.status(200).send(response.data.documents[0].score.toString());
+        }).catch(function(err){
+            if(err.response){
+                console.log(err.response.data);
+                res.send({status: false, error: "Unable to retrieve sentiments"});
+            }
+        });    
+    }
+    
     await verifyToken(req.headers['x-access-token'],function(profile){
         email = profile.email;
         var visible = true;
@@ -143,9 +151,9 @@ router.post('/addHelp',async function(req,res,next){
         
         else{
             Help.create({
-                probTitle: req.body.probTitle,
+                probTitle: title,
                 probType: req.body.probType,
-                probDesc: req.body.probDesc,
+                probDesc: desc,
                 emotion: emotionScore,
                 visible: visible,
 		        coordinates: req.body.coordinates,
