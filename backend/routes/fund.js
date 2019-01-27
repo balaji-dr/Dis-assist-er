@@ -32,6 +32,7 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
     var formData = {
         title: req.body.title,
         description: req.body.description,
+        link: req.body.link,
         image: filename,
         time: currentTime
     } 
