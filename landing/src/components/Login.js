@@ -39,6 +39,12 @@ class Login extends Component {
                 <a href="#top" className="smooth"><img src={require("../assets/img/namelogo.png")} alt="" style={{width: 150, height: 170, marginLeft: 200}} /></a>
 
                 <form onSubmit={this.handleSubmit} action="/funds" method={"get"} >
+                    <center>
+                        <label htmlFor="dashboard"  style={{marginLeft: 50, fontWeight: "600"}}>With great power comes great responsibilities.</label>
+                    </center>
+                    <center>
+                        <label htmlFor="dashboard"  style={{marginLeft: 50, fontWeight: "600"}}>Funds dashboard login</label>
+                    </center>
                     <div className="form-group">
                         <label for="nameImput">Username</label>
                         <input type="text" name="name" value={this.state.name} onChange={this.handleChange} className="form-control" id="nameImput" placeholder="Username" />
