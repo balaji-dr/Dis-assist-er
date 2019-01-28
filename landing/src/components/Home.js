@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                <section className="banner-area relative">
+                <section className="banner-area relative" id="HOME">
                     <div className="overlay overlay-bg"></div>
                     <div className="container">
                         <div className="row fullscreen justify-content-center align-items-center">

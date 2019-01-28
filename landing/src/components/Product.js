@@ -7,7 +7,7 @@ class Product extends Component {
     render() {
         return (
             <div>
-                <section id="services" className="title-bg section-full">
+                <section id="FEATURES" className="title-bg section-full">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">

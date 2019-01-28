@@ -12,7 +12,7 @@ class Team extends Component {
         return (
             <div>
                 <br/><br/><br/>
-                <section id="team" className="pb-150">
+                <section id="TEAM" className="pb-150">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">

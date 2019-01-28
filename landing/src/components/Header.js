@@ -34,11 +34,11 @@ class Header extends Component {
                                     </nav>
 
                                     <div className="header-social d-flex align-items-center row">
-                                        <a href="#"><i className="fa fa-android fa-4x"></i> &nbsp;</a>
-                                        <a href="#"><i className="fa fa-github-alt fa-4x"></i> &nbsp;</a>
-                                        <a href="#"><i className="fa fa-windows fa-4x"></i></a>
+                                        <a href="#"><i className="fa fa-android fa-4x" ></i> &nbsp;</a>
+                                        <a href="https://github.com/deeaarbee/Dis-assist-er" target="_blank"><i className="fa fa-github-alt fa-4x"></i> &nbsp;</a>
+                                        <a href="http://www.codefundo.io/" target="_blank"><i className="fa fa-windows fa-4x"></i></a>
                                         <div>
-                                            <a href="">
+                                            <a href="http://www.codefundo.io/" target="_blank">
                                                 Academia Accelerator <br/><center>Team LazyCoders </center>
                                             </a>
                                         </div>

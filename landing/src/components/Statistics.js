@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 class Home extends Component {
     render() {
         return (
-            <div>
+            <div id="STATS">
                 <div className="container pt-150">
                     <div className="row">
                         <div className="col-lg-3 col-sm-6 d-flex justify-content-center">

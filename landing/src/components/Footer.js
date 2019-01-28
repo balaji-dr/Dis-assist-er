@@ -12,8 +12,8 @@ class Footer extends Component {
                         <div className="row">
                             <div className="col-lg-3 col-sm-6">
                                 <div className="single-footer-widget">
-                                    <h6 className="text-white text-uppercase mb-20">About Agency</h6>
-                                    <p>The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point </p>
+                                    <h6 className="text-white text-uppercase mb-20">About</h6>
+                                    <p> This application was developed as a part for Microsoft CodeFunDo++ 2018.<br/>Team LazyCoders. <br/> College Of Engineering Guindy. </p>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-sm-6">
@@ -21,24 +21,22 @@ class Footer extends Component {
                                     <h6 className="text-white text-uppercase mb-20">Navigation Links</h6>
                                     <div className="d-flex">
                                         <ul className="footer-nav">
-                                            <li><a href="#">Home</a></li>
-                                            <li><a href="#">Features</a></li>
-                                            <li><a href="#">Services</a></li>
-                                            <li><a href="#">Portfolio</a></li>
+                                            <li><a href="#HOME">Home</a></li>
+                                            <li><a href="#FEATURES">Features</a></li>
+                                            <li><a href="#AZURE">Azure Services</a></li>
+                                            <li><a href="#STATS">Stats</a></li>
                                         </ul>
                                         <ul className="ml-30 footer-nav">
-                                            <li><a href="#">Team</a></li>
-                                            <li><a href="#">Pricing</a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="#TEAM">Team</a></li>
+                                            <li><a href="#TEAM">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-sm-6">
                                 <div className="single-footer-widget">
-                                    <h6 className="text-white text-uppercase mb-20">Newsletter</h6>
-                                    <p>For business professionals caught between high OEM price and mediocre print and graphic output,</p>
+                                    <h6 className="text-white text-uppercase mb-20">Contact</h6>
+                                    <p>For queries email at <a href="mailto:disassister@gmail.com">disassister@gmail.com</a></p>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-sm-6">
@@ -53,12 +51,9 @@ class Footer extends Component {
                             </div>
                         </div>
                         <div className="footer-bottom d-flex justify-content-between align-items-center">
-                            <p className="footer-text m-0">Copyright &copy; 2017  |  All rights reserved to <a href="#">Datarc inc.</a> Designed by <a href="https://colorlib.com/wp">Colorlib</a>.</p>
+                            <p className="footer-text m-0">Copyright &copy; 2018  |  All rights reserved to <a href="#">Dis-assist-er inc.</a> Designed by <a href="https://colorlib.com/wp">Colorlib</a>.</p>
                             <div className="footer-social d-flex align-items-center">
-                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                <a href="#"><i className="fa fa-dribbble"></i></a>
-                                <a href="#"><i className="fa fa-behance"></i></a>
+
                             </div>
                         </div>
                     </div>
