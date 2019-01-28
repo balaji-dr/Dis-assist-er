@@ -10,7 +10,7 @@ var cors = require('cors');
 
 app.use(cors());
 
-app.use(express.static('imageUploads'));
+app.use('/surviva',express.static('imageUploads'));
 
 app.use(bodyParser.json());
 

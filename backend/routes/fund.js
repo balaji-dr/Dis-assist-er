@@ -17,7 +17,11 @@ var imageStorage = multer.diskStorage({
 const imageUpload = multer({ storage : imageStorage});
 
 
-
+router.get('/deleteFund/:id',function(req,res,next){
+    Fund.findByIdAndDelete({_id:req.params.id}).then(function(resp){
+        res.send({status: true, details: details});
+    }).catch(next);
+});
 router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
     
     var currentTime = Date();
@@ -28,12 +32,13 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
     var formData = {
         title: req.body.title,
         description: req.body.description,
+        link: req.body.link,
         image: filename,
         time: currentTime
     } 
 
     Fund.create(formData).then(function(details){
-        res.send(details);
+        res.send({status: true, details: details});
     }).catch(function(err){
         res.send(err);
     })

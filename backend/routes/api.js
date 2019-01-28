@@ -63,7 +63,7 @@ router.get('/getHelpByUser', async function (req, res, next) {
     var email = "";
     var profile = "";
     await verifyToken(req.headers['x-access-token'],function(profille){
-        email = profile.email;
+        email = profille.email;
         profile = profille;
     });
     Help.find({email : email}).then(function (details) {
@@ -507,13 +507,16 @@ router.get('/getLocation',async function(req,res,next){
     var la = req.body.lat;
     var lo = req.body.lon;
     var mapTemp = "" ;
-    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
+    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la.toString()+','+lo.toString()+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
         mapTemp=response;
         //console.log(mapTemp);
     });
     for (let address of mapTemp.data.results[0].address_components) {
         //console.log(address);
         if(address.types.indexOf("sublocality") > -1){
+            sublocality.push(address.long_name);
+        }
+        if(address.types.indexOf("locality") > -1){
             sublocality.push(address.long_name);
         }
     }
@@ -524,13 +527,16 @@ router.get('/getLocation',async function(req,res,next){
 async function getLocation(coordinates,callback){
     var sublocality = [];
     var mapTemp = "" ;
-    var la = coordinates.lat;
-    var lo = coordinates.long;
+    var la = coordinates.latitude;
+    var lo = coordinates.longitude;
     var locality = "";
-    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la+','+lo+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
+    await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+la.toString()+','+lo.toString()+'&key=AIzaSyDfYDKCaNkqk841FlQgmqBslAzpAkc8ARU').then(function(response){
         mapTemp=response;
         for (let address of mapTemp.data.results[0].address_components) {
             if(address.types.indexOf("sublocality") > -1){
+                sublocality.push(address.long_name);
+            }
+            if(address.types.indexOf("locality") > -1){
                 sublocality.push(address.long_name);
             }
         }

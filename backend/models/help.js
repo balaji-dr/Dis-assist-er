@@ -20,8 +20,8 @@ const HelpSchema = new Schema({
     },
     visible: Boolean,
     coordinates: {
-	lat: {type: String},
-	long: {type: String}
+	latitude: {type: Number},
+	longitude: {type: Number }
     },
     helpMode: Boolean,
     emotion: Number,
