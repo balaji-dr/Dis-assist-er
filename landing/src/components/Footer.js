@@ -29,6 +29,8 @@ class Footer extends Component {
                                         <ul className="ml-30 footer-nav">
                                             <li><a href="#TEAM">Team</a></li>
                                             <li><a href="#TEAM">Contact</a></li>
+                                            <li><a href="/login">Admin Login</a></li>
+                                            <li><a href="/login">Funds</a></li>
                                         </ul>
                                     </div>
                                 </div>

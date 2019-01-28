@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+//
 import '../assets/css/linearicons.css';
 import '../assets/css/owl.carousel.css';
 import '../assets/css/font-awesome.min.css';
@@ -7,7 +7,7 @@ import '../assets/css/animate.css';
 import '../assets/css/bootstrap.css';
 import '../assets/css/main.css';
 
-
+//
 
 
 import $ from 'jquery'
@@ -29,9 +29,11 @@ import Footer from "../components/Footer";
 import Question from "../components/Question";
 import Azure from "../components/Azure";
 
+import MainRouter from "../router/router"
 class App extends Component {
 
   render() {
+
 
 
 
@@ -345,19 +347,10 @@ class App extends Component {
 
 
 
+
       return (
       <React.Fragment>
-       <Header/>
-        <Home/>
-          <About/>
-          <Product/>
-          <Statistics/>
-          <Feed/>
-        <Azure/>
-          <Team/>
-          <Question/>
-          <Footer/>
-
+      <MainRouter />
       </React.Fragment>
     );
   }
