@@ -4,7 +4,7 @@ import {isSignedIn} from "../utils/functions"
 import {AskHelpSwitch, AskHelpSwitchNav} from "../navigation/Switch";
 
 
-export default class CheckAskHelp extends React.Component {
+export default class CheckAskHelp extends React.Component<Props> {
 
     state = {
         signedIn: false,

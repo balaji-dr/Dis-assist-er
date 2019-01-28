@@ -9,10 +9,7 @@ class Weather extends Component {
         super(props);
         this.state = {
             weatherInfo: [
-                {},
-                {},
-                {},
-                {},
+                {description: ""},
             ]
         };
     }

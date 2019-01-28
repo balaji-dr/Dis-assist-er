@@ -81,13 +81,13 @@ class OwnFeedCard extends Component {
                     </Left>
                     <Right>
                         <ToggleSwitch
-                            isOn={this.props.visible}
+                            isOn={!this.props.visible}
                             onColor='green'
                             offColor='red'
                             label='Issue Solved?'
                             labelStyle={{color: 'black', fontWeight: '900'}}
                             size='medium'
-                            onToggle={ (isOn) => this.props.changeStatus(isOn, this.props._id) }
+                            onToggle={ (isOn) => this.props.changeStatus(!isOn, this.props._id) }
                         />
 
 

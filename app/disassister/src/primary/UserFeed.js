@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, FlatList, AsyncStorage} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, FlatList, AsyncStorage, RefreshControl} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body, Right, Button } from 'native-base';
 import OwnFeedCard from "../components/OwnFeedCard";
 import { human } from 'react-native-typography';
@@ -16,17 +16,15 @@ class UserFeed extends Component {
         return (
             <ScrollView style={{backgroundColor: "#EEF2F5"}}
 
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={this.state.refreshing}
-                //         onRefresh={this._onRefresh}
-                //     />
-                // }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.props.refreshing}
+                        onRefresh={this.props._onRefresh}
+                    />
+                }
             >
                 <Content padder>
-                    <Text style={[{alignSelf: 'center'}, human.title3]}>
-                        Your Issues
-                    </Text>
+
                     <FlatList data={this.props.feedList}
                               keyExtractor={(item, index) => item._id}
                               key={(item, index) => item._id }
@@ -34,7 +32,7 @@ class UserFeed extends Component {
                                   <OwnFeedCard title={item.probTitle} description={item.probDesc}
                                             category={item.probType} location={item.location}
                                             date={item.time} visible={item.visible}
-                                            changeStatus={this.changeStatus}
+                                            changeStatus={this.props.changeStatus}
                                                _id={item._id}
                                             key={item._id}
 

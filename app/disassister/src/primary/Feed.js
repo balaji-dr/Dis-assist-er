@@ -29,7 +29,7 @@ class Feed extends Component {
                               renderItem={({item, index}) => (
                                   <FeedCard title={item.probTitle} description={item.probDesc}
                                             category={item.probType} location={item.location}
-                                            status={item.status} date={item.time}
+                                            status={item.status} date={item.createdAt}
                                             contact={item.contact}
                                             key={item._id}
                                     />

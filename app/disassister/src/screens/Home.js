@@ -11,18 +11,24 @@ import { ALL_ALERTS } from "../store/API";
 import Permissions from 'react-native-permissions'
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import SplashScreen from "react-native-splash-screen";
+import OneSignal from "react-native-onesignal";
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
+        OneSignal.init("a77753b4-3fd9-4e77-bf8b-527173878884");
+        OneSignal.addEventListener('received', this.onReceived);
+        OneSignal.addEventListener('opened', this.onOpened);
+        OneSignal.addEventListener('ids', this.onIds);
 
         this.state = {
             latitude: null,
             longitude: null,
+            loaded: false,
             error: null,
             weather: {
-                response: [{}]
+                response: [{description: ""}]
             },
             news: {
                 response: [{}]
@@ -50,7 +56,8 @@ class Home extends Component {
                                 this.setState({
                                     news: response.data.details.news,
                                     weather: response.data.details.weather,
-                                    disaster: response.data.details.disaster
+                                    disaster: response.data.details.disaster,
+                                    loaded: true
                                 })
                             })
                         },
@@ -66,6 +73,27 @@ class Home extends Component {
     }
 
 
+    componentWillUnmount() {
+        OneSignal.removeEventListener('received', this.onReceived);
+        OneSignal.removeEventListener('opened', this.onOpened);
+        OneSignal.removeEventListener('ids', this.onIds);
+    }
+
+    onReceived(notification) {
+        // console.log("Notification received: ", notification);
+    }
+
+    onOpened(openResult) {
+        // console.log('Message: ', openResult.notification.payload.body);
+        // console.log('Data: ', openResult.notification.payload.additionalData);
+        // console.log('isActive: ', openResult.notification.isAppInFocus);
+        // console.log('openResult: ', openResult);
+    }
+
+    onIds(device) {
+        // console.log('Device info: ', device);
+    }
+
 
     static navigationOptions = ({ navigation  }) => ({
             title: "Home",
@@ -74,7 +102,7 @@ class Home extends Component {
                 backgroundColor: '#2D3F43'
             },
             headerRight: (
-                <TouchableOpacity style={{marginRight: 10}} onPress={() => navigation.navigate("FormPage")}>
+                <TouchableOpacity style={{marginRight: 10}} onPress={() => alert("Locating...")}>
                     <View style={{flexDirection: 'row'}}>
                         <Ionicons name="md-locate" size={30} color={"white"}/>
                         <Text style={{color: 'white', fontSize: 17, marginLeft: 5, marginTop: 5}}>Locate</Text>
@@ -92,6 +120,32 @@ class Home extends Component {
             return null
     }
 
+    _renderPage(){
+        if(this.state.latitude !== null && this.state.longitude !== null && this.state.loaded === true){
+            return(
+                <ScrollView style={styles.container}>
+                    <Weather datalist={this.state.weather}/>
+                    {this.renderAlertCard()}
+                    <TwoCard navigation={this.props.navigation} />
+                    <Text style={styles.heading}>News</Text>
+                    <News newslist={this.state.news}/>
+                </ScrollView>
+            )
+        }
+        else
+            return (
+                <View style={{
+                    flex: 0,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center'
+                }}>
+                    <Ionicons name="md-pin" size={170} color={"black"} style={{marginTop: 100}}/>
+                    <Text style={{fontSize: 20, color: 'black', alignSelf: 'center'}}>Trying to find your location...</Text>
+                </View>
+            )
+    }
+
 
 
     render() {
@@ -101,14 +155,7 @@ class Home extends Component {
                     backgroundColor="#2D3F43"
                     barStyle="light-content"
                 />
-
-               <Weather datalist={this.state.weather}/>
-
-                {this.renderAlertCard()}
-
-                <TwoCard navigation={this.props.navigation}/>
-                <Text style={styles.heading}>News</Text>
-                <News newslist={this.state.news}/>
+                {this._renderPage()}
             </ScrollView>
         );
     }

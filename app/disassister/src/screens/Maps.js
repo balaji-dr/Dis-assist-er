@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity, Dimensions, Image} from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import MapView,{ PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import MapView,{ PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from "react-native-modal";
+import {simpleGet} from "../utils/functions";
+import {GET_ALL_HELP_FEED_MAPS} from "../store/API";
 let window = Dimensions.get('window');
+import TimeAgo from 'react-native-timeago';
+import call from "react-native-phone-call";
+import {Button} from 'native-base';
+
 
 class Maps extends Component {
 
@@ -15,21 +21,32 @@ class Maps extends Component {
         this._toggleModal = this._toggleModal.bind(this);
         this._toggleLegendModal = this._toggleLegendModal.bind(this);
         this._filterCategory = this._filterCategory.bind(this);
+        this._refresh = this._refresh.bind(this);
         this.state = {
-            refreshing: false,
+            loading: false,
             modalVisible:false,
             legendModalVisible: false,
             markers:[
-                {title: "Hello", latlng: {latitude: 13.0827,
-                        longitude: 80.2707,}, probType: "Food", description: null, helpMode: true, time: "Jan 21, 2019"},
-                {title: "Hello2", latlng: {latitude: 17.3850,
-                        longitude: 78.4867,},probType: "Food", description: null,  helpMode: true, time: "Jan 21, 2019"},
-                {title: "Food available", latlng: {latitude: 12.9716,
-                        longitude: 77.5946,},probType: "Food", description: null,
-                    helpMode: false, time: "Jan 21, 2019"},
-                {title: "Need Shelter",probType: "Food", latlng: {latitude: 12.9760,
-                                        longitude: 80.2212,}, description: null,
-                    helpMode: false, time: "Jan 21, 2019"},
+                {
+                    coordinates: {
+                        latitude: 13.0060217,
+                        longitude: 80.2066449
+                    },
+                    _id: "5c4db6b7c20d3c7e213ddc62",
+                    probTitle: null,
+                    probType: "Food",
+                    probDesc: "Children are starving sdafafrfa for sugar So please help us with the essentials!!",
+                    emotion: 0.101580411195755,
+                    visible: true,
+                    helpMode: true,
+                    location: "Erode",
+                    contact: "9812345669",
+                    time: "Jan 27 2019 13:48:38",
+                    email: "karthiorton@gmail.com",
+                    createdAt: "2019-01-27T13:48:39.760Z",
+                    updatedAt: "2019-01-27T13:48:39.760Z",
+                    __v: 0
+                },
 
             ]
         };
@@ -50,14 +67,29 @@ class Maps extends Component {
         }
     );
 
+    _refresh(){
+        simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
+            console.log(data);
+            this.setState({markers: data.details, defaultList: data.details, loading: false });
+        })
+            .catch((error) => {console.log(error)});
+    }
+
+
+    componentDidMount(){
+        simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
+            console.log(data);
+            this.setState({markers: data.details, defaultList: data.details, loading: false });
+        });
+    }
 
     _simpleFilter(filter){
         if(filter==="priority"){
             this.setState({feedList: this.state.priorityList})
-
         }
-        else if(filter==="time"){
-            this.setState({feedList: this.state.defaultList})
+        else if(filter==="All"){
+            this.setState({markers: this.state.defaultList});
+            this._toggleModal()
         }
         else{
             this.setState({modalVisible: true});
@@ -72,13 +104,110 @@ class Maps extends Component {
         this.setState({legendModalVisible : !this.state.legendModalVisible});
     }
 
+    call(number){
+        call({number:number , prompt: false}).catch(console.error)
+    }
+
     _filterCategory(category){
         var newArray = this.state.defaultList;
         var temp = newArray.filter(function(obj) {
             return obj.probType === category;
         });
-        this.setState({feedList: temp, modalVisible: false});
+        this.setState({markers: temp, modalVisible: false});
 
+    }
+
+    _renderMarkers(){
+
+        var finalMarkers = [];
+
+        this.state.markers.map(marker => {
+        if(marker.helpMode === false)
+            finalMarkers.push(
+                <Marker
+            coordinate={marker.coordinates}
+            key={marker._id}
+            pinColor={"#11410C"}
+                >
+                <Callout onPress={() => this.call(marker.contact) }>
+        <View style={{height: 100, width: 100, flex: 1}}>
+        <Text style={{fontSize: 14, color: 'black', alignSelf: 'center', fontWeight: '500'}}>
+            Help Available
+            </Text>
+            <View
+                style={{
+                    borderBottomColor: 'gray',
+                    borderBottomWidth: 0.5,
+                }}
+            />
+
+            <Text style={{fontSize: 16, color: 'black', alignSelf: 'center', fontWeight: "500"}}>
+                {marker.probType}
+            </Text>
+
+            <View
+                style={{
+                    borderBottomColor: 'gray',
+                    borderBottomWidth: 0.5,
+                }}
+            />
+
+            <Text style={{fontSize: 13, color: 'black', alignSelf: 'center'}}>
+        <TimeAgo time={marker.createdAt} />
+        </Text>
+        <View style={{alignItems:'center', alignSelf: 'center'}}>
+        <Button transparent textStyle={{color: '#87838B'}} onPress={() => this.call(marker.contact) }>
+        <Ionicons name="md-call" size={25} color={"black"} style={{alignSelf:'center' }}/>
+        </Button>
+        </View>
+        </View>
+        </Callout>
+        </Marker>
+            );
+        else if(marker.helpMode === true)
+            finalMarkers.push(
+                <Marker
+                    coordinate={marker.coordinates}
+                    key={marker._id}
+                    pinColor={"#FF5047"}
+                >
+                    <Callout onPress={() => this.call(marker.contact) }>
+                    <View style={{height: 100, width: 100, flex: 1}}>
+                        <Text style={{fontSize: 16, color: 'black', alignSelf: 'center'}}>
+                            Need Help
+                        </Text>
+                        <View
+                            style={{
+                                borderBottomColor: 'gray',
+                                borderBottomWidth: 0.5,
+                            }}
+                        />
+
+                        <Text style={{fontSize: 16, color: 'black', alignSelf: 'center', fontWeight: "500"}}>
+                            {marker.probType}
+                        </Text>
+
+                        <View
+                            style={{
+                                borderBottomColor: 'gray',
+                                borderBottomWidth: 0.5,
+                            }}
+                        />
+
+                        <Text style={{fontSize: 13, color: 'black', alignSelf: 'center'}}>
+                            <TimeAgo time={marker.createdAt} />
+                        </Text>
+                        <View style={{alignItems:'center', alignSelf: 'center'}}>
+                            <Button transparent textStyle={{color: '#87838B'}} onPress={() => this.call(marker.contact) }>
+                                <Ionicons name="md-call" size={25} color={"black"} style={{alignSelf:'center' }}/>
+                            </Button>
+                        </View>
+                    </View>
+                    </Callout>
+                </Marker>
+            );
+        });
+        return finalMarkers;
     }
 
 
@@ -93,53 +222,40 @@ class Maps extends Component {
                     region={{
                         latitude: 13.0827,
                         longitude: 80.2707,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
+                        latitudeDelta: 2.945,
+                        longitudeDelta: 0.1991,
                     }}
                 >
-                    {this.state.markers.map(marker => {
-                        if(marker.helpMode === true)
-                            return (
-                                <Marker
-                                    coordinate={marker.latlng}
-                                    title={marker.probType}
-                                    description={marker.time}
-                                    key={marker.title}
-                                    pinColor={"#11410C"}
-                                />
-                            );
-                        else
-                           return (
-                                <Marker
-                                    coordinate={marker.latlng}
-                                    title={marker.probType}
-                                    description={marker.time}
-                                    key={marker.title}
-                                    pinColor={"#FF5047"}
-                                />
-                            );
-                    })}
+                    {
+                        this._renderMarkers()
+                    }
 
                 </MapView>
 
-                <View style={{marginLeft: window.width/1.4}}>
-                    <TouchableOpacity style={{ marginBottom: window.height/1.4}} onPress={() => this._toggleLegendModal()}>
+                <View style={{marginLeft: window.width/1.4, flexDirection: 'row'}}>
+                    <TouchableOpacity style={{ marginBottom: window.height/1.4, marginRight: 5}} onPress={() => this._toggleLegendModal()}>
                         <Ionicons name="md-help-circle" size={50} color={"black"}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginBottom: window.height/1.7, marginRight: window.width/10}} onPress={() => this._refresh()}>
+                        <Ionicons name="md-refresh-circle" size={50} color={"black"}/>
                     </TouchableOpacity>
                 </View>
 
 
 
-                <ActionButton buttonColor="rgba(231,76,60,1)" offsetX={45} offsetY={7} renderIcon={() => <Icon name="md-options" size={20} color="black" />}>
-                    <ActionButton.Item buttonColor='#9b59b6' title="Priority" onPress={() => this._simpleFilter("priority")}>
-                        <Icon name="md-podium" style={styles.actionButtonIcon} size={30} color={"black"}/>
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Time" onPress={() => this._simpleFilter("time")}>
-                        <Icon name="md-alarm" style={styles.actionButtonIcon} size={30} color={"black"}/>
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="Category" onPress={() => this._simpleFilter("category")}>
-                        <Icon name="md-apps" style={styles.actionButtonIcon} size={30} color={"black"}/>
-                    </ActionButton.Item>
+                <ActionButton buttonColor="rgba(231,76,60,1)" offsetX={45} offsetY={7}
+                              renderIcon={() => <Icon name="md-options" size={20} color="black" />}
+                              onPress={() => this._simpleFilter("category")}
+                >
+                    {/*<ActionButton.Item buttonColor='#9b59b6' title="Priority" onPress={() => this._simpleFilter("priority")}>*/}
+                        {/*<Icon name="md-podium" style={styles.actionButtonIcon} size={30} color={"black"}/>*/}
+                    {/*</ActionButton.Item>*/}
+                    {/*<ActionButton.Item buttonColor='#3498db' title="Time" onPress={() => this._simpleFilter("time")}>*/}
+                        {/*<Icon name="md-alarm" style={styles.actionButtonIcon} size={30} color={"black"}/>*/}
+                    {/*</ActionButton.Item>*/}
+                    {/*<ActionButton.Item buttonColor='#1abc9c' title="Category" onPress={() => this._simpleFilter("category")}>*/}
+                        {/*<Icon name="md-apps" style={styles.actionButtonIcon} size={30} color={"black"}/>*/}
+                    {/*</ActionButton.Item>*/}
                 </ActionButton>
 
                 <Modal isVisible={this.state.legendModalVisible} onBackButtonPress={() => this._toggleLegendModal()}>
@@ -178,7 +294,16 @@ class Maps extends Component {
 
                 <Modal isVisible={this.state.modalVisible} onBackButtonPress={() => this._toggleModal()}>
 
-                    <View style={styles.container}>
+                    <View style={{
+                        flex: 0,
+                        height: 300,
+                        width:300,
+                        marginLeft:10,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: "column",
+                        backgroundColor: 'white'
+                    }}>
 
                         <View style={{flex: 0, alignSelf: "flex-end" }}>
                             <TouchableOpacity style={{marginRight: 22}} onPress={() => this._toggleModal()}>
@@ -200,14 +325,20 @@ class Maps extends Component {
                                 Medical
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("Cloths")}>
+                        <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("Clothes")}>
                             <Text style={{color: "black", fontSize: 30}}>
-                                Cloths
+                                Clothes
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("Shelter")}>
                             <Text style={{color: "black", fontSize: 30}}>
                                 Shelter
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{marginRight: 22}} onPress={() => this._simpleFilter("All")}>
+                            <Text style={{color: "black", fontSize: 30}}>
+                                All
                             </Text>
                         </TouchableOpacity>
 
@@ -224,7 +355,7 @@ export default Maps;
 const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        height: 510,
+        height: window.height/1.25,
         width: 400,
         justifyContent: 'flex-end',
         alignItems: 'center',

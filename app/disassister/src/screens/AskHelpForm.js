@@ -3,10 +3,20 @@ import {Platform, StyleSheet, Text, View, StatusBar, TouchableOpacity, Image, Al
 import HelpForm from "../components/HelpForm";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {human} from "react-native-typography/dist/index";
+
 let window = Dimensions.get('window');
+
 type Props = {};
 
 class AskHelpForm extends Component<Props> {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            latitude: null,
+            longitude: null
+        };
+    }
 
     static navigationOptions = ({ navigation  }) => ({
             headerTintColor: 'white',
@@ -35,7 +45,7 @@ class AskHelpForm extends Component<Props> {
                     <Image source={require("../assets/images/formlogo.png")} style={{alignSelf: 'center', width: 200, height: 200}}/>
                     <Text style={[{color: "white", alignSelf: 'center', fontSize: 17,  marginBottom: 15}, human.calloutWhite]}>How can we help you?</Text>
                 </View>
-                <HelpForm navigation={this.props.navigation}/>
+                <HelpForm navigation={this.props.navigation} />
                 </ScrollView>
             </View>
         );

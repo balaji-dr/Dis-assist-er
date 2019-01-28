@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, StyleSheet } from 'react-native';
+import {Image, Dimensions, StyleSheet, Linking, View} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 let window = Dimensions.get('window');
+import TimeAgo from 'react-native-timeago';
 
 class FundCard extends Component {
 
@@ -9,25 +10,26 @@ class FundCard extends Component {
         return (
             <Card style={styles.card}>
                 <CardItem>
-                    <Left>
-                        <Thumbnail source={require("../assets/images/tn.png")}/>
+                    {/*<Left>*/}
                         <Body>
-                        <Text>TamilNadu Chief Minister Relief Fund</Text>
-                        <Text note>November 15, 2018</Text>
+                        <Text>{this.props.title}</Text>
+                        <TimeAgo time={this.props.time} />
                         </Body>
-                    </Left>
+                    {/*</Left>*/}
                 </CardItem>
                 <CardItem>
                     <Body>
-                    <Image source={require("../assets/images/pic.jpg")} style={{height: 150, width: 305}}/>
+                    <View style={{width: window.width/1.2, height: null, justifyContent: 'center', alignItems: 'center', marginBottom:10 }}>
+                        <Image source={{uri: this.props.image}} style={{width: 190, height: 140, alignSelf: 'center', justifyContent:"center" }}/>
+                    </View>
                     <Text>
-                       This is the official portal of TamilNadu CM Public relief funds towards the Gaja Cyclone
+                        {this.props.description}
                     </Text>
                     </Body>
                 </CardItem>
                 <CardItem>
                     <Right style={{marginLeft: 200}}>
-                        <Button transparent textStyle={{color: '#87838B'}}>
+                        <Button transparent textStyle={{color: '#87838B'}} onPress={() => Linking.openURL(this.props.link)}>
                             <Text style={{fontSize: 25, color:"black"}}>&#8377;</Text>
                             <Text style={{color: "#2D3F43", fontWeight: "500"}}>Donate</Text>
                         </Button>

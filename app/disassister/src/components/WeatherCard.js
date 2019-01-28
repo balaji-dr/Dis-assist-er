@@ -30,6 +30,22 @@ class WeatherCard extends Component {
             }
         }
 
+    _renderIcon(string){
+        if(string.includes("clouds"))
+            return <Image source={require("../assets/images/cloudy.png")} style={styles.cloud}/>
+        if(string.includes("thunderstorm"))
+            return <Image source={require("../assets/images/sunny.png")} style={styles.cloud}/>
+        if(string.includes("rain"))
+            return <Image source={require("../assets/images/rain.png")} style={styles.cloud}/>
+        if(string.includes("mist"))
+            return <Image source={require("../assets/images/haze.png")} style={styles.cloud}/>
+        if(string.includes("drizzle"))
+            return <Image source={require("../assets/images/rain.png")} style={styles.cloud}/>
+        if(string.includes("sky"))
+            return <Image source={require("../assets/images/sun.png")} style={styles.cloud}/>
+
+    }
+
     render() {
         return (
                 <Card style={styles.card}>
@@ -43,7 +59,7 @@ class WeatherCard extends Component {
                                 {this._changeTemp(this.props.item.temp)}&#176;C
                             </Text>
                         </View>
-                        <Image source={require("../assets/images/sunny.png")} style={styles.cloud}/>
+                        {this._renderIcon(this.props.item.description)}
                         </Body>
                     </CardItem>
                     <Text style={styles.date}>

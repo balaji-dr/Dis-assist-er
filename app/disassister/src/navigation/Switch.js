@@ -13,7 +13,7 @@ import Login_Dup from "../screens/Login_Dup";
 
 export const AskHelpSwitch = (signedIn = false) => createAppContainer(createSwitchNavigator({
         HelpSignedIn: {
-            screen: HelpFormNavigator
+            screen: HelpFormNavigator,
         },
         SignedOut: {
             screen: Login_Dup

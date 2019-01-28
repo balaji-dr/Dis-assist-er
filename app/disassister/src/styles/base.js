@@ -7,13 +7,13 @@ export const WeatherCardStyles = StyleSheet.create({
         marginLeft:10,
         marginTop:10,
         width: window.width/1.5,
-        height: window.height/4,
+        height: window.height/3.7,
         borderRadius:10,
         borderWidth: 1,
         overflow: 'hidden'
     },
     cloud: {
-        height: 100,
+        height: 120,
         width: 130,
         marginLeft: 10
     },
@@ -34,7 +34,8 @@ export const WeatherCardStyles = StyleSheet.create({
     },
     innerBody: {
         backgroundColor: "#2399E8",
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: window.height/6.5
     },
     date: {
         fontWeight: "500",

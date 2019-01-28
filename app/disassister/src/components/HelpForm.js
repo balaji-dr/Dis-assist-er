@@ -4,12 +4,11 @@ import { Container, Item, Content, Input, Textarea, Icon, Picker, Button, Left }
 import Ionicons from "react-native-vector-icons/Ionicons";
 import PhoneInput from 'react-native-phone-input'
 import SwitchSelector from 'react-native-switch-selector';
-import { material } from 'react-native-typography'
 import axios from "axios";
 import {HelpFormStyles} from "../styles/base";
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_PLACES_API_KEY } from 'react-native-dotenv'
 import {POST_HELP} from "../store/API";
+import RNAndroidLocationEnabler from "react-native-android-location-enabler";
 const styles = HelpFormStyles;
 
 const options = [
@@ -21,16 +20,16 @@ class HelpForm extends Component {
 
     constructor(props) {
         super(props);
+        this.resetLocation = this.resetLocation.bind();
         this.state = {
-            probTitle: "",
-            probType: "",
+            submitBtn: "Submit",
+            probType: "Food",
             probDesc: "",
-            location: "",
             contact: "",
             helpMode: true,
             coordinates: {
-                lat: null,
-                long: null
+                latitude: null,
+                longitude: null
             }
         };
     }
@@ -38,11 +37,11 @@ class HelpForm extends Component {
     async submitForm() {
         // this.props.navigation.navigate("AppMain")
 
-        console.log("test")
         const token = await AsyncStorage.getItem('token');
-        if ( this.state.probType === "" ||  this.state.contact.length < 10)
+        if (this.state.contact.length < 10 || this.state.coordinates.latitude === null || this.state.coordinates.longitude === null)
         {
-            alert("Please check your details.")
+            alert("Please check your details. Also make sure your location is enabled.");
+            this.resetLocation();
         }
         else {
             axios.post(POST_HELP, {
@@ -57,13 +56,10 @@ class HelpForm extends Component {
                     if (response.data.status === true){
                         alert("Your issue was successfully added.");
                         this.setState({
-                            probTitle: "",
-                            probType: "",
+                            probType: "Food",
                             probDesc: "",
-                            location: "",
                             contact: "",
                             helpMode: true,
-
                         });
                         this.props.navigation.navigate("Apps")
                     }
@@ -76,13 +72,54 @@ class HelpForm extends Component {
         }
     }
 
-    componentWillMount(){
-        this.setState({
-            coordinates: {
-                lat: this.props.lat,
-                long: this.props.long
-            }
-        })
+    componentDidMount(){
+
+        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
+            .then(data => {
+                if (data === "already-enabled" || data === "enabled") {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            this.setState({
+                                coordinates:{
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude,
+                                },
+                                error: null,
+                            });
+                        })
+                }
+            }).catch((error) => alert("Cannot find your location."));
+
+    }
+
+    resetLocation(){
+
+        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
+            .then(data => {
+                if (data === "already-enabled" || data === "enabled") {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            this.setState({
+                                coordinates:{
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude,
+                                },
+                                error: null,
+                            });
+                        })
+                }
+            }).catch((error) => alert("Cannot find your location."));
+
+    }
+
+
+    renderBtnText(){
+        if(this.state.helpMode===true){
+            return "Ask Help";
+        }
+        else{
+            return "Provide Help"
+        }
     }
 
     render() {
@@ -118,7 +155,7 @@ class HelpForm extends Component {
                         mode="dropdown"
                         iosIcon={<Icon name="ios-arrow-down-outline" />}
                         style={{ width: undefined, marginBottom: 10 }}
-                        placeholder="Select your SIM"
+                        placeholder="Problem category"
                         placeholderStyle={{ color: "#bfc6ea" }}
                         placeholderIconColor="#007aff"
                         selectedValue={this.state.probType}
@@ -213,7 +250,7 @@ class HelpForm extends Component {
                               onChangeText={(text) => this.setState({probDesc: text})} />
 
                     <Button rounded success onPress={() => this.submitForm()} style={styles.submit}>
-                        <Text style={{alignSelf: "center"}}>Submit</Text>
+                        <Text style={{alignSelf: "center"}}>{this.renderBtnText()}</Text>
                     </Button>
                 </Content>
             </Container>

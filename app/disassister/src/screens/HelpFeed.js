@@ -1,10 +1,24 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity, Alert, FlatList} from 'react-native';
+import {
+    Platform,
+    StyleSheet,
+    Text,
+    View,
+    StatusBar,
+    ScrollView,
+    TouchableOpacity,
+    Alert,
+    FlatList,
+    AsyncStorage,
+    RefreshControl
+} from 'react-native';
 import FeedCard from "../components/FeedCard";
 import Modal from "react-native-modal";
 import {Content} from "native-base";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {GET_ALL_HELP_FEED} from "../store/API";
+import {simpleGet} from "../utils/functions"
 
 
 class HelpFeed extends Component {
@@ -14,36 +28,37 @@ class HelpFeed extends Component {
         this._simpleFilter = this._simpleFilter.bind(this);
         this._toggleModal = this._toggleModal.bind(this);
         this._filterCategory = this._filterCategory.bind(this);
+        this._onRefresh = this._onRefresh.bind(this);
         this.state = {
             refreshing: false,
             modalVisible: false,
             defaultList:[
-                {probTitle: "Hello", location: "Ceg", probDesc: "We need volunteers for cleaning up the fallen trees.",
-                    time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
-                {probTitle: "Hello", location: "CEG", probDesc: undefined,
-                    time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
-                {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
-                    time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
-                {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
-                    time: "12/12/12", status: "Verified", probType: "Clothes", emotion: 9},
-                {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
-                    time: "12/12/12", status: "Verified", probType: "Medical", emotion: 9}
+                // {probTitle: "Hello", location: "Ceg", probDesc: "We need volunteers for cleaning up the fallen trees.",
+                //     time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
+                // {probTitle: "Hello", location: "CEG", probDesc: undefined,
+                //     time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
+                // {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
+                //     time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
+                // {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
+                //     time: "12/12/12", status: "Verified", probType: "Clothes", emotion: 9},
+                // {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
+                //     time: "12/12/12", status: "Verified", probType: "Medical", emotion: 9}
             ],
             feedList:[
-                {probTitle: "Hello", location: "ceg", probDesc: undefined,
-                    time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
-                {probTitle: "Hello", location: "CEG", probDesc: "We need volunteers for cleaning up the fallen trees.",
-                    time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
-                {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
-                    time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
+                // {probTitle: "Hello", location: "ceg", probDesc: undefined,
+                //     time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
+                // {probTitle: "Hello", location: "CEG", probDesc: "We need volunteers for cleaning up the fallen trees.",
+                //     time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
+                // {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
+                //     time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
             ],
             priorityList:[
-                {probTitle: "Hello", location: "ceg", probDesc: undefined,
-                    time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
-                {probTitle: "Hello", location: "CEG", probDesc: "We need volunteers for cleaning up the fallen trees.",
-                    time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
-                {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
-                    time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
+                // {probTitle: "Hello", location: "ceg", probDesc: undefined,
+                //     time: "12/12/12", status: "Verified", probType: "Food", emotion: 1},
+                // {probTitle: "Hello", location: "CEG", probDesc: "We need volunteers for cleaning up the fallen trees.",
+                //     time: "12/12/12", status: "Verified", probType: "Volunteering", emotion: 7},
+                // {probTitle: "Hello", location: "CEG", probDesc: "Electric wires has fallen.",
+                //     time: "12/12/12", status: "Verified", probType: "Shelter", emotion: 9},
             ]
         };
     }
@@ -67,28 +82,45 @@ class HelpFeed extends Component {
     );
 
     componentDidMount(){
-        // simpleGet(GET_ALL_HELP_FEED).then((data) => {
-        //     console.log(data);
-        //     this.setState({feedList: data.details, defaultList: data.details});
-        // });
+        simpleGet(GET_ALL_HELP_FEED).then((data) => {
+            console.log(data);
+            this.setState({feedList: data.details, defaultList: data.details, priorityList: data.details});
+        });
         let newList = this.state.priorityList;
         newList.sort(function (a, b){
             return b.emotion - a.emotion;
         });
         this.setState({priorityList: newList});
-
     }
+
+
+    _onRefresh(){
+        this.setState({refreshing: true});
+        simpleGet(GET_ALL_HELP_FEED).then((data) => {
+            console.log(data);
+            this.setState({feedList: data.details, defaultList: data.details, priorityList: data.details, refreshing: false});
+        }).catch((error) => {
+            console.log(error);
+            this.setState({refreshing: false});
+        });
+        let newList = this.state.priorityList;
+        newList.sort(function (a, b){
+            return b.emotion - a.emotion;
+        });
+        this.setState({priorityList: newList});
+    }
+
 
     _renderFeedList(){
         return(
             <ScrollView style={{backgroundColor: "#EEF2F5"}}
 
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={this.state.refreshing}
-                //         onRefresh={this._onRefresh}
-                //     />
-                // }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
             >
                 <Content padder>
                     <FlatList data={this.state.feedList}
@@ -97,7 +129,7 @@ class HelpFeed extends Component {
                               renderItem={({item, index}) => (
                                   <FeedCard title={item.probTitle} description={item.probDesc}
                                             category={item.probType} location={item.location}
-                                            status={item.status} date={item.time}
+                                            status={item.status} date={item.createdAt}
                                             contact={item.contact}
                                             key={item._id} navigation={this.props.navigation}
                                   />
@@ -195,7 +227,7 @@ class HelpFeed extends Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("Clothes")}>
                                 <Text style={{color: "black", fontSize: 30}}>
-                                    Cloths
+                                    Clothes
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("Shelter")}>

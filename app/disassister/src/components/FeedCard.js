@@ -63,7 +63,7 @@ class FeedCard extends Component {
                         <Body>
                         <Text style={{fontSize: 20, color: "black"}}>{this.props.location}</Text>
                         {/*<Text note>{this.props.date}</Text>*/}
-                        <TimeAgo time={"2019-01-21T06:24:44.124Z"} />
+                        <TimeAgo time={this.props.date} />
                         </Body>
                     </Left>
                     {this._renderThumbnail(this.props.category)}

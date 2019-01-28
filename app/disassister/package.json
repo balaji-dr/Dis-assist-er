@@ -23,6 +23,7 @@
     "react-native-maps": "^0.23.0",
     "react-native-modal": "^7.0.2",
     "react-native-motion": "^0.2.0",
+    "react-native-onesignal": "^3.2.12",
     "react-native-permissions": "^1.1.1",
     "react-native-phone-call": "^1.0.9",
     "react-native-phone-input": "^0.2.1",
