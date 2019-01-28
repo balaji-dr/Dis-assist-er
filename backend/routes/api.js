@@ -63,7 +63,7 @@ router.get('/getHelpByUser', async function (req, res, next) {
         email = profille.email;
         profile = profille;
     });
-    Help.find({email : email,visible: true}).then(function (details) {
+    Help.find({email : email}).then(function (details) {
         res.send({status: true, profile: profile, details: details});
     }).catch(next);
 });
