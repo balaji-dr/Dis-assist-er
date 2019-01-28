@@ -3,6 +3,7 @@ package com.disassister;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new SplashScreenReactPackage(),
+            new ReactNativeOneSignalPackage(),
             new MapsPackage(),
             new RNAndroidLocationEnablerPackage(),
             new FBSDKPackage(mCallbackManager),
