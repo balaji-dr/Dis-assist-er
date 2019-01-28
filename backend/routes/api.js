@@ -51,12 +51,9 @@ Access token:
 //**********************HELP**********************
 
 router.get('/getHelp', function (req, res, next) {
-    Help.find({}).sort({createdAt: -1}).then(function (details) {
+    Help.find({visible: true}).sort({createdAt: -1}).then(function (details) {
         res.send({status: true, details: details});
     }).catch(next);
-    // if(req.body.prob == ""){
-    //     console.log("prob empty");
-    // }
 });
 
 router.get('/getHelpByUser', async function (req, res, next) {
@@ -66,7 +63,7 @@ router.get('/getHelpByUser', async function (req, res, next) {
         email = profille.email;
         profile = profille;
     });
-    Help.find({email : email}).then(function (details) {
+    Help.find({email : email,visible: true}).then(function (details) {
         res.send({status: true, profile: profile, details: details});
     }).catch(next);
 });
