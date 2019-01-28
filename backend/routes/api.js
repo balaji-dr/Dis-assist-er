@@ -516,6 +516,9 @@ router.get('/getLocation',async function(req,res,next){
         if(address.types.indexOf("sublocality") > -1){
             sublocality.push(address.long_name);
         }
+        if(address.types.indexOf("locality") > -1){
+            sublocality.push(address.long_name);
+        }
     }
     var locality = sublocality.join();
     res.send({status: true,locality: locality});
