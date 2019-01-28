@@ -63,7 +63,7 @@ router.get('/getHelpByUser', async function (req, res, next) {
     var email = "";
     var profile = "";
     await verifyToken(req.headers['x-access-token'],function(profille){
-        email = profile.email;
+        email = profille.email;
         profile = profille;
     });
     Help.find({email : email}).then(function (details) {
