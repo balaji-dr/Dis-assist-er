@@ -110,5 +110,6 @@ def send_signal():
     users = set(userlist)
     all_sigids = [People.objects.get(email=x).sig_id for x in users]
     send = [x for x in all_sigids if x is not None]
-    push.send_message(headings="FUCK YOU DUDE", message=" HAHAHAHAH  TEST", player_id=send)
+    push.send_message(headings="Check notifications!", message="There is someone near whom you can ask/ provide help.",
+                      player_id=send)
     return True
