@@ -12,12 +12,18 @@ class Suggestion(models.Model):
     category = models.CharField(max_length=255)
     issue_id = models.TextField()
 
+    def __str__(self):
+        return self.user1
+
 
 class People(models.Model):
     user_id = models.TextField()
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     sig_id = models.CharField(max_length=255, null=True, default=None)
+
+    def __str__(self):
+        return self.email
 
 
 class Issue(models.Model):
@@ -41,3 +47,6 @@ class Issue(models.Model):
         on_delete=models.CASCADE,
         null=False
     )
+
+    def __str__(self):
+        return self.location
