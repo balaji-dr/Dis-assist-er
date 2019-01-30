@@ -1,1 +1,3 @@
-This folder is the backend of the application
+## Backend
+
+This folder contains the backend code.

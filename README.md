@@ -2,24 +2,36 @@
 Codefundo++ 2018-19 participation - Dis-assist-er
 
 ## Description
-  Finding and locating survivors during a natural calamity is a difficult task. With the technology available today, it can be simplified and made easy. The easier the task gets, the more number of people get saved. Lets consider a simple scenario where the people want to circulate a piece of information to the search squad for helping them to locate the victim or requesting them to share any information about a victim. Victims can ask for help and their problem is analysed and is given a specific emotion value which denotes the priority value of the problem. Volunteers who are connected to the internet can view these posts and reach out to them. They will see the posts according to the priority of the problem. They can also search for a particular category in which they are willing to help with the help of a chat bot.
+	A unique solution aimed at providing all sorts of support for assisting disaster victms. During disaster times, people struggle to find help and people who are willing to help struggle to find legitimate source of need. Our app serves as a platform for connecting the volunteers and victims. It helps the victims post their helps and their problem is analysed and is given a specific emotion value which denotes the priority value of the problem. Volunteers can view these posts and reach out to them. They will see the posts according to the priority of the problem. They can also search for a particular category in which they are willing to help.
   
 ## Features
-- Online mode to ask for help from anyone.
-- Emotion recognition to prioritize the problems.
-- Bot helps to find the issue that the user can solve based on the location and category.
-- Have track of resolved issues/ ongoing issues in all affected areas
-- Chat system helps to locate the victim (Incomplete due to time constraints)
-- Offline operation for search and rescue (Incomplete due to time constraints)
+- Victims can ask for help which is categorized into Food, Shelter, Clothes, Medical.
+- Volunteers can offer help and their location can be viewed in the map.
+- Weather alerts for the next five days.
+- Disaster alerts, if any.
+- News reports on disaster affected areas.
+- The Chatbot is trained to answer all the questions on what to do and what not to do before/during/after disasters.
+- Users can view all the helps requested by the victims and also the posts by the volunteers.
+- To connect with a victim, one must be signed in. Only then, the victim credentails will be shown.
+- Users can sign in using their gmail account.
+- Emotion recognition to prioritize the problems in the help feed.
+- Funds screen helps users connect with official Fund portal.
+- Maps screen shows the location of all the victims and volunteers.
 
-## Future Work 
-Considering a scenario where some one trapped and wants to reach out to the search squad. A search squad can find people by simply searching for victims using this app which allows the trapped person to host a connection (mobile hotspot). The victims can ask for help by just switching to the help mode where all the connectivity takes place offline and does not require a internet connection.
+## Video URL
+
+xxx
+
+## Disassister Website
+
+https://disassister.centralus.cloudapp.azure.com/
 
 ## Usage instructions (backend)
 - npm install
 - node surviva
 
-## Usage instructions (frontend)
+## Usage instructions (app)
 - npm install
 - react-native run-android
+
 
