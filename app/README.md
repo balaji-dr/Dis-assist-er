@@ -1,1 +1,3 @@
-This is the folder for react native application
+## App
+
+This is the folder for react native application.

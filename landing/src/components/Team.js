@@ -19,7 +19,7 @@ class Team extends Component {
                                 <div className="product-area-title text-center">
 
                                     {/*<p className="text-uppercase">Creative People</p>*/}
-                                    <h2 className="h1">Team work builds trust and <br/> trust builds growth</h2>
+                                    <h2 className="h1">Team work builds Trust and <br/> Trust builds Growth</h2>
                                 </div>
                             </div>
                         </div>
@@ -27,58 +27,32 @@ class Team extends Component {
                             <div className="col-lg-4 col-sm-6">
                                 <div className="single-member">
                                     <div className="thumb relative" style={{backgroundImage: "url("+img1+")"}}>
-                                        <div className="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
-                                            <p className="text-white">This article is floated online with an aim to help you find the best dvd printing solution. Dvd</p>
-                                            <div className="line"></div>
-                                            <div className="social d-flex align-items-center justify-content-center">
-                                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                                <a href="#"><i className="fa fa-linkedin"></i></a>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div className="desc text-center">
-                                        <h5 className="text-uppercase"><a href="#">Rodney Cooper</a></h5>
-                                        <p>Creative Art Director</p>
+                                        <h5 className="text-uppercase">Balaji D R</h5>
+                                        <p>App Developer</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-sm-6">
                                 <div className="single-member">
                                     <div className="thumb relative" style={{backgroundImage: "url("+img1+")"}}>
-                                        <div className="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
-                                            <p className="text-white">This article is floated online with an aim to help you find the best dvd printing solution. Dvd</p>
-                                            <div className="line"></div>
-                                            <div className="social d-flex align-items-center justify-content-center">
-                                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                                <a href="#"><i className="fa fa-linkedin"></i></a>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div className="desc text-center">
-                                        <h5 className="text-uppercase"><a href="#">Dora Walker</a></h5>
-                                        <p>Senior Core Developer</p>
+                                        <h5 className="text-uppercase">Dhilip Kumar R</h5>
+                                        <p>Backend Developer</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-sm-6">
                                 <div className="single-member">
                                     <div className="thumb relative" style={{backgroundImage: "url("+img1+")"}}>
-                                        {/*<img src={require("../assets/img/t4.jpg")} alt="" />*/}
-                                        <div className="overlay overlay-member d-flex flex-column justify-content-end align-items-center">
-                                            <p className="text-white">This article is floated online with an aim to help you find the best dvd printing solution. Dvd</p>
-                                            <div className="line"></div>
-                                            <div className="social d-flex align-items-center justify-content-center">
-                                                <a href="#"><i className="fa fa-facebook"></i></a>
-                                                <a href="#"><i className="fa fa-twitter"></i></a>
-                                                <a href="#"><i className="fa fa-linkedin"></i></a>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div className="desc text-center">
-                                        <h5 className="text-uppercase"><a href="#">Lena Keller</a></h5>
-                                        <p>Creative Content Developer</p>
+                                        <h5 className="text-uppercase">Karthikeyan K</h5>
+                                        <p>Backend Developer</p>
                                     </div>
                                 </div>
                             </div>

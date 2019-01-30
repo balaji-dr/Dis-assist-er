@@ -25,7 +25,7 @@ class Azure extends Component {
                                     </div>
                                     <div className="desc">
                                         <h4>Cognitive Service</h4>
-                                        <p> The emotion API analysis the issues to assign priority. </p>
+                                        <p> The cognitive emotion API analyses the issues to assign priority</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@ class Azure extends Component {
                                     </div>
                                     <div className="desc">
                                         <h4>Bot Framework</h4>
-                                        <p> Azure Bot Framework powers the Surviva Bot which interacts with the users. </p>
+                                        <p> Azure Bot Framework powers the Surviva Bot which interacts with the users </p>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ class Azure extends Component {
                                     </div>
                                     <div className="desc">
                                         <h4>QnA Maker</h4>
-                                        <p> QnA maker trained with questions and answers about disasters. </p>
+                                        <p> QnA maker trained with questions and answers about disasters </p>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@ class Azure extends Component {
                                     </div>
                                     <div className="desc">
                                         <h4> Virtual Machine </h4>
-                                        <p> VM that helps run our backend system. </p>
+                                        <p> VM that helps run our entire backend system </p>
                                     </div>
                                 </div>
                             </div>

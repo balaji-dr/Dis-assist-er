@@ -21,7 +21,6 @@ import jQuery from 'jquery'
 import Header from '../components/Header'
 import Home from '../components/Home'
 import About from '../components/About'
-import Statistics from '../components/Statistics'
 import Product from "../components/Product";
 import Team from "../components/Team";
 import Feed from "../components/Feed";
