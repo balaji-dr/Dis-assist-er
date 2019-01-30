@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, Image, AsyncStorage, Alert} from 'react-native';
 import { Container, Header, Right, Card, CardItem, Body, Thumbnail, Button, Left } from 'native-base';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SharedElement } from 'react-native-motion';
@@ -8,8 +8,14 @@ import TimeAgo from 'react-native-timeago';
 
 class FeedCard extends Component {
 
-    call(number){
-        call({number:number , prompt: false}).catch(console.error)
+    async call(number){
+        const token = await AsyncStorage.getItem('token');
+        if (token){
+            call({number:number , prompt: false}).catch(console.error)
+        }
+        else{
+            Alert.alert("Authentication failed", "Please login to communicate.");
+        }
     }
 
     _renderDescription(desc){

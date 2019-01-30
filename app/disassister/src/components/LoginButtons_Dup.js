@@ -112,7 +112,7 @@ class LoginButtons_Dup extends Component {
         return (
             <View>
                 <Text style={{marginBottom: 25, fontSize: 16, alignSelf: 'center'}}>
-                    Help your fellow beings.
+                    {/*Help your fellow beings.*/}
                 </Text>
 
                 <View style={{alignContent: 'center', alignSelf: 'center'}}>

@@ -8,7 +8,6 @@ import CheckAskHelp from "../secondary/CheckAskHelp";
 import TwoCard from "../components/TwoCard";
 import axios from "axios";
 import { ALL_ALERTS } from "../store/API";
-import Permissions from 'react-native-permissions'
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import SplashScreen from "react-native-splash-screen";
 import OneSignal from "react-native-onesignal";
@@ -17,6 +16,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+        // this.locate = this.locate.bind(this);
         OneSignal.init("a77753b4-3fd9-4e77-bf8b-527173878884");
         OneSignal.addEventListener('received', this.onReceived);
         OneSignal.addEventListener('opened', this.onOpened);
@@ -39,8 +39,11 @@ class Home extends Component {
         };
     }
 
+
+
     async componentDidMount() {
         SplashScreen.hide();
+        this.props.navigation.setParams({ handleLocate: this.locate.bind(this) });
         RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
             .then(data => {
                 if(data === "already-enabled" || data === "enabled"){
@@ -94,6 +97,39 @@ class Home extends Component {
         // console.log('Device info: ', device);
     }
 
+    locate(){
+        console.log("retsdfs")
+        this.setState({loaded: false});
+        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
+            .then(data => {
+                if(data === "already-enabled" || data === "enabled"){
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            this.setState({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                                error: null,
+                            });
+                            axios.get(ALL_ALERTS + this.state.latitude.toString() + "/" +
+                                this.state.longitude.toString()).then((response) => {
+                                this.setState({
+                                    news: response.data.details.news,
+                                    weather: response.data.details.weather,
+                                    disaster: response.data.details.disaster,
+                                    loaded: true
+                                })
+                            })
+                        },
+                        (error) => this.setState({ error: error.message }),
+                        { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
+                    );
+                }
+
+            }).catch(err => {
+            alert("Please allow location permissions for app and restart")
+        });
+    }
+
 
     static navigationOptions = ({ navigation  }) => ({
             title: "Home",
@@ -102,7 +138,7 @@ class Home extends Component {
                 backgroundColor: '#2D3F43'
             },
             headerRight: (
-                <TouchableOpacity style={{marginRight: 10}} onPress={() => alert("Locating...")}>
+                <TouchableOpacity style={{marginRight: 10}} onPress={()=>navigation.state.params.handleLocate()}>
                     <View style={{flexDirection: 'row'}}>
                         <Ionicons name="md-locate" size={30} color={"white"}/>
                         <Text style={{color: 'white', fontSize: 17, marginLeft: 5, marginTop: 5}}>Locate</Text>
@@ -112,6 +148,8 @@ class Home extends Component {
 
         }
     );
+
+
 
     renderAlertCard(){
         if(this.state.disaster.response.length > 0)

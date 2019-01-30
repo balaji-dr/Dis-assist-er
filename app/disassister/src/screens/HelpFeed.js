@@ -10,7 +10,7 @@ import {
     Alert,
     FlatList,
     AsyncStorage,
-    RefreshControl
+    RefreshControl, Dimensions
 } from 'react-native';
 import FeedCard from "../components/FeedCard";
 import Modal from "react-native-modal";
@@ -19,6 +19,7 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {GET_ALL_HELP_FEED} from "../store/API";
 import {simpleGet} from "../utils/functions"
+let window = Dimensions.get('window');
 
 
 class HelpFeed extends Component {
@@ -81,33 +82,34 @@ class HelpFeed extends Component {
         }
     );
 
-    componentDidMount(){
-        simpleGet(GET_ALL_HELP_FEED).then((data) => {
+    async componentDidMount(){
+        await simpleGet(GET_ALL_HELP_FEED).then((data) => {
             console.log(data);
-            this.setState({feedList: data.details, defaultList: data.details, priorityList: data.details});
+            this.setState({feedList: data.details, defaultList: data.details});
+            let newList = this.state.defaultList.slice();
+            newList.sort(function (a, b){
+                return parseFloat(a.emotion) - parseFloat(b.emotion);
+            });
+            this.setState({priorityList: newList});
         });
-        let newList = this.state.priorityList;
-        newList.sort(function (a, b){
-            return b.emotion - a.emotion;
-        });
-        this.setState({priorityList: newList});
     }
 
 
-    _onRefresh(){
+    async _onRefresh(){
         this.setState({refreshing: true});
-        simpleGet(GET_ALL_HELP_FEED).then((data) => {
+        await simpleGet(GET_ALL_HELP_FEED).then((data) => {
             console.log(data);
             this.setState({feedList: data.details, defaultList: data.details, priorityList: data.details, refreshing: false});
+            let newList = data.details;
+            newList.sort(function (a, b){
+                return parseFloat(a.emotion) - parseFloat(b.emotion);
+            });
+            this.setState({priorityList: newList});
         }).catch((error) => {
             console.log(error);
             this.setState({refreshing: false});
         });
-        let newList = this.state.priorityList;
-        newList.sort(function (a, b){
-            return b.emotion - a.emotion;
-        });
-        this.setState({priorityList: newList});
+
     }
 
 
@@ -118,7 +120,7 @@ class HelpFeed extends Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
-                        onRefresh={this._onRefresh}
+                        onRefresh={() => this._onRefresh()}
                     />
                 }
             >
@@ -142,11 +144,15 @@ class HelpFeed extends Component {
 
     _simpleFilter(filter){
         if(filter==="priority"){
-            this.setState({feedList: this.state.priorityList})
-
+            let newList = this.state.defaultList.slice();
+            newList.sort(function (a, b){
+                return parseFloat(a.emotion) - parseFloat(b.emotion);
+            });
+            this.setState({priorityList: newList});
+            this.setState({feedList: this.state.priorityList.slice()});
         }
         else if(filter==="time"){
-            this.setState({feedList: this.state.defaultList})
+            this.setState({feedList: this.state.defaultList.slice()})
         }
         else{
            this.setState({modalVisible: true});
@@ -158,7 +164,7 @@ class HelpFeed extends Component {
     }
 
     _filterCategory(category){
-        var newArray = this.state.defaultList;
+        var newArray = this.state.defaultList.slice();
         var temp = newArray.filter(function(obj) {
             return obj.probType === category;
         });
@@ -191,7 +197,8 @@ class HelpFeed extends Component {
 
 
 
-                    <Modal isVisible={this.state.modalVisible} onBackButtonPress={() => this._toggleModal()}>
+                    <Modal isVisible={this.state.modalVisible} onBackButtonPress={() => this._toggleModal()}
+                           deviceHeight={window.height}>
 
                         <View style={{
                             flex: 0,

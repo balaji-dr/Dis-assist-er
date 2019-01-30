@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity, Dimensions, Image} from 'react-native';
+import {
+    Platform,
+    StyleSheet,
+    Text,
+    View,
+    StatusBar,
+    ScrollView,
+    TouchableOpacity,
+    Dimensions,
+    Image,
+    AsyncStorage, Alert
+} from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MapView,{ PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import ActionButton from 'react-native-action-button';
@@ -11,6 +22,7 @@ let window = Dimensions.get('window');
 import TimeAgo from 'react-native-timeago';
 import call from "react-native-phone-call";
 import {Button} from 'native-base';
+import { Header } from 'react-navigation';
 
 
 class Maps extends Component {
@@ -35,12 +47,12 @@ class Maps extends Component {
                     _id: "5c4db6b7c20d3c7e213ddc62",
                     probTitle: null,
                     probType: "Food",
-                    probDesc: "Children are starving sdafafrfa for sugar So please help us with the essentials!!",
+                    probDesc: "test!!",
                     emotion: 0.101580411195755,
                     visible: true,
                     helpMode: true,
                     location: "Erode",
-                    contact: "9812345669",
+                    contact: "1234567890",
                     time: "Jan 27 2019 13:48:38",
                     email: "karthiorton@gmail.com",
                     createdAt: "2019-01-27T13:48:39.760Z",
@@ -53,7 +65,7 @@ class Maps extends Component {
     }
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Maps",
+            title: "Feed Location",
             headerTintColor: 'white',
             headerStyle: {
                 backgroundColor: '#2D3F43'
@@ -104,8 +116,14 @@ class Maps extends Component {
         this.setState({legendModalVisible : !this.state.legendModalVisible});
     }
 
-    call(number){
-        call({number:number , prompt: false}).catch(console.error)
+    async call(number){
+        const token = await AsyncStorage.getItem('token');
+        if (token){
+            call({number:number , prompt: false}).catch(console.error)
+        }
+        else{
+            Alert.alert("Authentication failed", "Please login to communicate.");
+        }
     }
 
     _filterCategory(category){
@@ -214,7 +232,7 @@ class Maps extends Component {
     render() {
         return (
 
-            <View style={styles.container}>
+            <View style={[styles.container,{width: window.width}]}>
 
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -232,18 +250,18 @@ class Maps extends Component {
 
                 </MapView>
 
-                <View style={{marginLeft: window.width/1.4, flexDirection: 'row'}}>
+                <View style={{marginLeft: window.width/1.3, flexDirection: 'row'}}>
                     <TouchableOpacity style={{ marginBottom: window.height/1.4, marginRight: 5}} onPress={() => this._toggleLegendModal()}>
                         <Ionicons name="md-help-circle" size={50} color={"black"}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ marginBottom: window.height/1.7, marginRight: window.width/10}} onPress={() => this._refresh()}>
+                    <TouchableOpacity style={{ marginBottom: window.height/1.7, marginRight: window.width/93}} onPress={() => this._refresh()}>
                         <Ionicons name="md-refresh-circle" size={50} color={"black"}/>
                     </TouchableOpacity>
                 </View>
 
 
 
-                <ActionButton buttonColor="rgba(231,76,60,1)" offsetX={45} offsetY={7}
+                <ActionButton buttonColor="rgba(231,76,60,1)" offsetX={5} offsetY={7}
                               renderIcon={() => <Icon name="md-options" size={20} color="black" />}
                               onPress={() => this._simpleFilter("category")}
                 >
@@ -258,7 +276,7 @@ class Maps extends Component {
                     {/*</ActionButton.Item>*/}
                 </ActionButton>
 
-                <Modal isVisible={this.state.legendModalVisible} onBackButtonPress={() => this._toggleLegendModal()}>
+                <Modal isVisible={this.state.legendModalVisible} onBackButtonPress={() => this._toggleLegendModal()} deviceHeight={window.height}>
 
                     <View style={{flex: 0,
                         height: 170,
@@ -285,14 +303,12 @@ class Maps extends Component {
                                 <Text style={{marginTop: 8, fontSize:18, color: 'black'}}>Help Available</Text>
                             </View>
                         </View>
-
-
                     </View>
                 </Modal>
 
 
 
-                <Modal isVisible={this.state.modalVisible} onBackButtonPress={() => this._toggleModal()}>
+                <Modal isVisible={this.state.modalVisible} onBackButtonPress={() => this._toggleModal()} deviceHeight={window.height}>
 
                     <View style={{
                         flex: 0,
@@ -341,11 +357,9 @@ class Maps extends Component {
                                 All
                             </Text>
                         </TouchableOpacity>
-
                     </View>
                 </Modal>
             </View>
-
         );
     }
 }
@@ -355,12 +369,15 @@ export default Maps;
 const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        height: window.height/1.25,
-        width: 400,
+        height: window.height- (Header.HEIGHT + 73 ),
+        width: window.width,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     map: {
         ...StyleSheet.absoluteFillObject,
+        height: window.height- (Header.HEIGHT + 73 ),
+        width: window.width
     },
+
 });

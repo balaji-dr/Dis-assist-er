@@ -13,7 +13,8 @@ const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = req
 const { BotConfiguration } = require('botframework-config');
 
 // This bot's main dialog.
-const { BasicBot } = require('./bot');
+// const { BasicBot } = require('./bot');
+const { EchoBot } = require('./EchoBot');
 
 // Read botFilePath and botFileSecret from .env file
 // Note: Ensure you have a .env file and include botFilePath and botFileSecret.
@@ -95,7 +96,8 @@ userState = new UserState(memoryStorage);
 // Create the main dialog.
 let bot;
 try {
-    bot = new BasicBot(conversationState, userState, botConfig);
+    // bot = new BasicBot(conversationState, userState, botConfig);
+    bot = new EchoBot();
 } catch (err) {
     console.error(`[botInitializationError]: ${ err }`);
     process.exit();
