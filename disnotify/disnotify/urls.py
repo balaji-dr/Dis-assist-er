@@ -18,7 +18,7 @@ from django.urls import path
 from mainapp.urls import app_urlpatterns
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('notify/admin/', admin.site.urls),
 ]
 
 urlpatterns += app_urlpatterns
