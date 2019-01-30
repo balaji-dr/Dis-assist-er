@@ -23,4 +23,5 @@ app_urlpatterns = [
     path('notify/match/', views.Match.as_view(), name='match-notify'),
     path('notify/setsig/', views.SetSigId.as_view(), name='sig-notify'),
     path('notify/sendsig/', views.SendSig.as_view(), name='sig-send-notify'),
+    path('notify/getposts/', views.SuggestScreen.as_view(), name='get-notify'),
 ]

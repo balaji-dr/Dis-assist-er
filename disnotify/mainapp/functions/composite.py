@@ -3,6 +3,7 @@ from mainapp.models import People, Issue, Suggestion
 from math import sin, cos, sqrt, atan2, radians
 from mainapp.functions.push import push
 
+
 def fetch_and_store_all_details():
     r = requests.get("https://disassister.centralus.cloudapp.azure.com/surviva/getUsers")
     data = r.json()
@@ -70,6 +71,8 @@ def extract_issue_obj(issue: Issue):
     temp["longitude"] = issue.longitude
     temp["location"] = issue.location
     temp["issue_id"] = issue.issue_id
+    temp["created_at"] = issue.created_at
+    temp["updated_at"] = issue.updated_at
     temp["user"] = extract_user_obj(user=issue.user)
     return temp
 
@@ -90,6 +93,9 @@ def match_user(userobj, helpmode: bool):
                 s, created = Suggestion.objects.get_or_create(user1=issue.get("email"), user2=each.get("email"),
                                                               helpmode=helpmode, category=issue.get("category"),
                                                               issue_id=each.get("issue_id"))
+                # common_posts = Suggestion.objects.filter(user1=issue.get("email"), user2=each.get("email"),
+                #                                          category=issue.get("category")).first()
+
                 if created or s:
                     s.save()
     return True
