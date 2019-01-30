@@ -1,0 +1,17 @@
+notifyenv/
+migrations/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+.env
+db.sqlite3
+.idea/
