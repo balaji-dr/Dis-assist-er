@@ -15,9 +15,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 let window = Dimensions.get('window');
 import { human } from 'react-native-typography'
 import UserFeed from "../primary/UserFeed";
-import {GET_USER_ISSUES, TOGGLE_VISIBILITY} from "../store/API";
+import {GET_USER_ISSUES, TOGGLE_VISIBILITY, SET_SIG} from "../store/API";
 import axios from "axios/index";
 import SwitchSelector from 'react-native-switch-selector';
+import SplashScreen from "react-native-splash-screen";
 
 
 const options = [
@@ -55,17 +56,19 @@ class Profile extends Component<Props> {
 
 
     static navigationOptions = ({ navigation  }) => ({
-            title: "Profile",
+            title: "",
             headerTintColor: 'white',
             headerStyle: {
-                backgroundColor: '#2D3F43'
+                backgroundColor: 'transparent'
             },
-
+            headerTransparent: true
         }
     );
 
     async componentDidMount(){
         const token = await AsyncStorage.getItem('token');
+        const player_id = await AsyncStorage.getItem('playerid');
+
         axios.get(GET_USER_ISSUES, {
             headers: {
                 "x-access-token": token
@@ -86,8 +89,15 @@ class Profile extends Component<Props> {
 
         }).catch((error) => {
             this.props.navigation.navigate("SignedOut")
-        })
+        });
 
+        if(token){
+            axios.post(SET_SIG, {
+                token: token,
+                sig_id: player_id
+            }).then((data) => console.log(data.data))
+                .catch((error) => console.log(error))
+        }
     }
 
     async _onRefresh(){
@@ -101,8 +111,6 @@ class Profile extends Component<Props> {
         }).then((response) => {
             if (response.data.status === true)
             {
-
-
                 if(this.state.helpMode === true){
                     this.setState({profile: response.data.profile,
                         defaultList: response.data.details});
@@ -187,6 +195,11 @@ class Profile extends Component<Props> {
                     barStyle="light-content"
                 />
                 <View style={styles.personblock}>
+                    <View style={{position: 'absolute', alignSelf: "flex-start"}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate("Notify", {email: this.state.profile.email})}>
+                            <Ionicons name="md-notifications" size={33} color={"white"} style={{alignSelf: 'center', marginLeft: 20, marginTop: 7}}/>
+                        </TouchableOpacity>
+                    </View>
                     <View style={{position: 'absolute', alignSelf: "flex-end"}}>
                         <TouchableOpacity onPress={() => this.logout()}>
                             <Ionicons name="md-exit" size={33} color={"white"} style={{alignSelf: 'center', marginRight: 20, marginTop: 7}}/>

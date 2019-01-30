@@ -81,7 +81,7 @@ class Maps extends Component {
 
     _refresh(){
         simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
-            console.log(data);
+            // console.log(data);
             this.setState({markers: data.details, defaultList: data.details, loading: false });
         })
             .catch((error) => {console.log(error)});
@@ -90,7 +90,7 @@ class Maps extends Component {
 
     componentDidMount(){
         simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
-            console.log(data);
+            // console.log(data);
             this.setState({markers: data.details, defaultList: data.details, loading: false });
         });
     }

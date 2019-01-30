@@ -17,7 +17,7 @@ import Modal from "react-native-modal";
 import {Content} from "native-base";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {GET_ALL_HELP_FEED} from "../store/API";
+import {GET_ALL_HELP_FEED, GET_ALL_HELP_FEED_MAPS} from "../store/API";
 import {simpleGet} from "../utils/functions"
 let window = Dimensions.get('window');
 
@@ -67,13 +67,14 @@ class HelpFeed extends Component {
     static navigationOptions = ({ navigation  }) => ({
             title: "Help Feed",
             headerTintColor: 'white',
-            // headerRight: (
-            //     <TouchableOpacity style={{marginRight: 22}} onPress={() => navigation.navigate("Feed1")}>
-            //         <Text style={{color: "white", fontSize: 30}}>
-            //             &#8377;
-            //         </Text>
-            //     </TouchableOpacity>
-            // ),
+            headerRight: (
+                <TouchableOpacity style={{marginRight: 10}} onPress={()=>navigation.state.params.toggleCategory()}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Icon name="md-apps" size={30} color={"white"}/>
+                        <Text style={{color: 'white', fontSize: 17, marginLeft: 5, marginTop: 5}}>Category</Text>
+                    </View>
+                </TouchableOpacity>
+            ),
 
             headerStyle: {
                 backgroundColor: '#2D3F43',
@@ -83,8 +84,9 @@ class HelpFeed extends Component {
     );
 
     async componentDidMount(){
-        await simpleGet(GET_ALL_HELP_FEED).then((data) => {
-            console.log(data);
+        this.props.navigation.setParams({ toggleCategory: this._toggleModal.bind(this) });
+        await simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
+            // console.log(data);
             this.setState({feedList: data.details, defaultList: data.details});
             let newList = this.state.defaultList.slice();
             newList.sort(function (a, b){
@@ -97,7 +99,7 @@ class HelpFeed extends Component {
 
     async _onRefresh(){
         this.setState({refreshing: true});
-        await simpleGet(GET_ALL_HELP_FEED).then((data) => {
+        await simpleGet(GET_ALL_HELP_FEED_MAPS).then((data) => {
             console.log(data);
             this.setState({feedList: data.details, defaultList: data.details, priorityList: data.details, refreshing: false});
             let newList = data.details;
@@ -132,6 +134,7 @@ class HelpFeed extends Component {
                                   <FeedCard title={item.probTitle} description={item.probDesc}
                                             category={item.probType} location={item.location}
                                             status={item.status} date={item.createdAt}
+                                            helpMode={item.helpMode}
                                             contact={item.contact}
                                             key={item._id} navigation={this.props.navigation}
                                   />
@@ -154,6 +157,20 @@ class HelpFeed extends Component {
         else if(filter==="time"){
             this.setState({feedList: this.state.defaultList.slice()})
         }
+        else if(filter==="needhelp"){
+            let newList = this.state.defaultList.slice();
+            let t = newList.filter(function(obj) {
+                return obj.helpMode === true;
+            });
+            this.setState({feedList: t.slice()});
+        }
+        else if(filter==="providehelp"){
+            let newList = this.state.defaultList.slice();
+            let t = newList.filter(function(obj) {
+                return obj.helpMode === false;
+            });
+            this.setState({feedList: t.slice()});
+        }
         else{
            this.setState({modalVisible: true});
         }
@@ -164,12 +181,16 @@ class HelpFeed extends Component {
     }
 
     _filterCategory(category){
-        var newArray = this.state.defaultList.slice();
-        var temp = newArray.filter(function(obj) {
-            return obj.probType === category;
-        });
-        this.setState({feedList: temp, modalVisible: false});
-
+        if(category!=="All"){
+            var newArray = this.state.defaultList.slice();
+            var temp = newArray.filter(function(obj) {
+                return obj.probType === category;
+            });
+            this.setState({feedList: temp, modalVisible: false});
+        }
+        else{
+            this.setState({feedList: this.state.defaultList.slice(), modalVisible: false});
+        }
     }
 
 
@@ -184,15 +205,26 @@ class HelpFeed extends Component {
                 {/*<Feed feedList={this.state.feedList}/>*/}
                 {this._renderFeedList()}
                 <ActionButton buttonColor="rgba(231,76,60,1)" offsetX={7} offsetY={7} renderIcon={() => <Icon name="md-options" size={30} color="black" />}>
-                    <ActionButton.Item buttonColor='#9b59b6' title="Priority" onPress={() => this._simpleFilter("priority")}>
+
+                    <ActionButton.Item buttonColor='#ba141c' title="Wants Help" textContainerStyle={{backgroundColor: 'black'}}
+                                       textStyle={{color: "white", backgroundColor: "black"}} onPress={() => this._simpleFilter("needhelp")}>
+                        <Icon name="md-hand" style={styles.actionButtonIcon} size={30} color={"black"}/>
+                    </ActionButton.Item>
+
+                    <ActionButton.Item buttonColor='#0c721f' title="Provides Help" textContainerStyle={{backgroundColor: 'black'}}
+                                       textStyle={{color: "white", backgroundColor: "black"}} onPress={() => this._simpleFilter("providehelp")}>
+                        <Icon name="md-hand" style={styles.actionButtonIcon} size={30} color={"black"}/>
+                    </ActionButton.Item>
+
+                    <ActionButton.Item buttonColor='#9b59b6' title="Priority" textContainerStyle={{backgroundColor: 'black'}}
+                                       textStyle={{color: "white", backgroundColor: "black"}} onPress={() => this._simpleFilter("priority")}>
                         <Icon name="md-podium" style={styles.actionButtonIcon} size={30} color={"black"}/>
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Time" onPress={() => this._simpleFilter("time")}>
+                    <ActionButton.Item textStyle={{color: "white", backgroundColor: "black"}}
+                                       textContainerStyle={{backgroundColor: 'black'}} buttonColor='#3498db' title="Time" titleColor={"white"} onPress={() => this._simpleFilter("time")}>
                         <Icon name="md-alarm" style={styles.actionButtonIcon} size={30} color={"black"}/>
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="Category" onPress={() => this._simpleFilter("category")}>
-                        <Icon name="md-apps" style={styles.actionButtonIcon} size={30} color={"black"}/>
-                    </ActionButton.Item>
+
                 </ActionButton>
 
 
@@ -202,7 +234,7 @@ class HelpFeed extends Component {
 
                         <View style={{
                             flex: 0,
-                            height: 270,
+                            height: 300,
                             width:300,
                             marginLeft:10,
                             justifyContent: 'center',
@@ -242,10 +274,14 @@ class HelpFeed extends Component {
                                     Shelter
                                 </Text>
                             </TouchableOpacity>
+
+                            <TouchableOpacity style={{marginRight: 22}} onPress={() => this._filterCategory("All")}>
+                                <Text style={{color: "black", fontSize: 30}}>
+                                    All
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </Modal>
-
-
             </View>
         );
     }

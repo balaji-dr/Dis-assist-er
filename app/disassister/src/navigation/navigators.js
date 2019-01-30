@@ -12,6 +12,7 @@ import CheckProfile from "../secondary/CheckProfile";
 import Maps from "../screens/Maps";
 import AskHelpForm from "../screens/AskHelpForm";
 import CheckAskHelp from "../secondary/CheckAskHelp";
+import Notify from "../screens/Notify";
 
 const HomeStack = createStackNavigator({
     Home: Home,
@@ -52,10 +53,13 @@ const ChatStack = createStackNavigator({
 const ProfileStack = createStackNavigator({
     Profile: {
         screen: Profile
+    },
+    Notify: {
+        screen: Notify
     }
 }, {
     initialRouteName: "Profile",
-    headerMode: 'none',
+    headerMode: 'float',
 });
 
 const HelpStack = createStackNavigator({

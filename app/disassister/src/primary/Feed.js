@@ -30,6 +30,7 @@ class Feed extends Component {
                                   <FeedCard title={item.probTitle} description={item.probDesc}
                                             category={item.probType} location={item.location}
                                             status={item.status} date={item.createdAt}
+                                            helpMode={item.helpMode}
                                             contact={item.contact}
                                             key={item._id}
                                     />

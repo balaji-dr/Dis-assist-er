@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity, AsyncStorage} from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Weather from "../primary/Weather";
 import AlertCard from "../components/AlertCard";
@@ -11,16 +11,18 @@ import { ALL_ALERTS } from "../store/API";
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import SplashScreen from "react-native-splash-screen";
 import OneSignal from "react-native-onesignal";
+import { ONE_SIG_APP_ID } from 'react-native-dotenv'
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
         // this.locate = this.locate.bind(this);
-        OneSignal.init("a77753b4-3fd9-4e77-bf8b-527173878884");
-        OneSignal.addEventListener('received', this.onReceived);
-        OneSignal.addEventListener('opened', this.onOpened);
-        OneSignal.addEventListener('ids', this.onIds);
+        OneSignal.init(ONE_SIG_APP_ID);
+        OneSignal.configure();
+        OneSignal.addEventListener('received', this.onReceived.bind(this));
+        OneSignal.addEventListener('opened', this.onOpened.bind(this));
+        OneSignal.addEventListener('ids', this.onIds.bind(this));
 
         this.state = {
             latitude: null,
@@ -73,6 +75,7 @@ class Home extends Component {
                 alert("Please allow location permissions for app and restart")
         });
 
+
     }
 
 
@@ -95,10 +98,10 @@ class Home extends Component {
 
     onIds(device) {
         // console.log('Device info: ', device);
+        AsyncStorage.setItem("playerid", device.userId);
     }
 
     locate(){
-        console.log("retsdfs")
         this.setState({loaded: false});
         RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
             .then(data => {

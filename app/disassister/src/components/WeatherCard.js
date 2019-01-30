@@ -11,7 +11,6 @@ class WeatherCard extends Component {
     _changeDate(d){
 
         var date = new Date(d).toUTCString();
-        console.log(date);
         if(date==="Invalid Date")
             return
         return date.slice(0,12);

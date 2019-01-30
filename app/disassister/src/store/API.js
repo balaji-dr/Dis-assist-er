@@ -1,4 +1,5 @@
 import { API_URL } from 'react-native-dotenv'
+import { NOTIFY_API_URL } from 'react-native-dotenv'
 
 let BASE_URL = API_URL;
 
@@ -12,3 +13,6 @@ export let TOGGLE_VISIBILITY = API_URL + "toggleVisibility/";
 export let ALL_ALERTS = API_URL + "getAllAlerts/";
 
 export let GET_FUNDS = API_URL + "Fund/getFund";
+
+export let SET_SIG = NOTIFY_API_URL + "setsig/";
+export let GET_SUGGESTIONS = NOTIFY_API_URL + "getposts/";

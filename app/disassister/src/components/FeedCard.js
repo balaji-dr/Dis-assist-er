@@ -58,13 +58,14 @@ class FeedCard extends Component {
             );
     }
 
+    setColor(mode){
+        return mode === true ? "red" : "green"
+    }
+
     render() {
         return (
             <Card style={styles.card}>
-                <CardItem button onPress={() => {
-                    this.props.navigation.setParams({test: 'one'});
-                    this.props.navigation.navigate("Maps")}
-                }>
+                <CardItem>
                     <Left>
                         <Body>
                         <Text style={{fontSize: 20, color: "black"}}>{this.props.location}</Text>
@@ -78,7 +79,7 @@ class FeedCard extends Component {
                 <CardItem button onPress={() => this.props.navigation.navigate("Maps")}>
                     <Left>
                         <Button transparent textStyle={{color: '#87838B'}}>
-                            <Ionicons name="md-apps" size={25} color={"black"}/>
+                            <Ionicons name="md-apps" size={27} color={this.setColor(this.props.helpMode)}/>
                             <Text style={{marginLeft: 5, fontSize: 17, color: "black"}}>{this.props.category}</Text>
                         </Button>
                     </Left>
