@@ -18,17 +18,18 @@ Codefundo++ 2018-19 participation  Dis-Assist-er
 - Funds screen helps users connect with official Fund portal.
 - Maps screen shows the location of all the victims and volunteers.
 
-## Video URL
-
-https://youtu.be/d18cG0YhQ0I
-
 ## Technologies used
 - Languages: Js, Python3
 - Frameworks: React Native, Express, Django, Azure Bot Framework
 - Services: Azure Cognitive Services, QnA Maker
 
-## Disassister Website
+## Video URL
+https://youtu.be/d18cG0YhQ0I
 
+## GitHub
+https://github.com/deeaarbee/Dis-assist-er
+
+## Disassister Website
 https://disassister.centralus.cloudapp.azure.com/
 
 
