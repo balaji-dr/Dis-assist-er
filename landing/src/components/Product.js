@@ -29,17 +29,7 @@ class Product extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-sm-6">
-                                <div className="single-product">
-                                    <div className="icon">
-                                        <span className="lnr lnr-gift"></span>
-                                    </div>
-                                    <div className="desc">
-                                        <h4>Funds</h4>
-                                        <p>Helps users connect with official Fund portal</p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div className="col-lg-3 col-sm-6">
                                 <div className="single-product">
                                     <div className="icon">
@@ -51,8 +41,32 @@ class Product extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-lg-3 col-sm-6">
+                                <div className="single-product">
+                                    
+                                    <div className="icon">
+                                        <span className="lnr lnr-bubble"></span>
+                                    </div>
+                                    <div className="desc">
+                                        <h4>Notifications</h4>
+                                        <p>Sends notifications when there is a help nearby</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="row justify-content-center">
+                        <div className="col-lg-3 col-sm-6">
+                                <div className="single-product">
+                                    
+                                    <div className="icon">
+                                        <span className="lnr lnr-warning"></span>
+                                    </div>
+                                    <div className="desc">
+                                        <h4>Alerts</h4>
+                                        <p>Displays news, weather and disaster alerts</p>
+                                    </div>
+                                </div>
+                            </div> 
                             <div className="col-lg-3 col-sm-6">
                                 <div className="single-product">
                                     <div className="icon">
@@ -64,15 +78,15 @@ class Product extends Component {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div className="col-lg-3 col-sm-6">
                                 <div className="single-product">
-                                    
                                     <div className="icon">
-                                        <span className="lnr lnr-warning"></span>
+                                        <span className="lnr lnr-gift"></span>
                                     </div>
                                     <div className="desc">
-                                        <h4>Alerts</h4>
-                                        <p>Displays news, weather and disaster alerts</p>
+                                        <h4>Funds</h4>
+                                        <p>Helps users connect with official Fund portal</p>
                                     </div>
                                 </div>
                             </div>

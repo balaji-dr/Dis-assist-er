@@ -24,11 +24,9 @@ class Footer extends Component {
                                             <li><a href="#HOME">Home</a></li>
                                             <li><a href="#FEATURES">Features</a></li>
                                             <li><a href="#AZURE">Azure Services</a></li>
-                                            <li><a href="#STATS">Stats</a></li>
                                         </ul>
                                         <ul className="ml-30 footer-nav">
                                             <li><a href="#TEAM">Team</a></li>
-                                            <li><a href="#TEAM">Contact</a></li>
                                             <li><a href="/login">Admin Login</a></li>
                                             <li><a href="/login">Funds</a></li>
                                         </ul>

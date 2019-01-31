@@ -24,8 +24,8 @@ class Azure extends Component {
                                         <span className="lnr lnr-heart-pulse"></span>
                                     </div>
                                     <div className="desc">
-                                        <h4>Cognitive Service</h4>
-                                        <p> The cognitive emotion API analyses the issues to assign priority</p>
+                                        <h4>Text Analytics</h4>
+                                        <p> The API analyses the issues to assign priority according to their emotion score.</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@ class Azure extends Component {
                                     </div>
                                     <div className="desc">
                                         <h4> Virtual Machine </h4>
-                                        <p> VM that helps run our entire backend system </p>
+                                        <p> Virtual Machine that helps maintain our entire backend system </p>
                                     </div>
                                 </div>
                             </div>

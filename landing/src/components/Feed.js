@@ -19,7 +19,7 @@ class Feed extends Component {
                         </div>
                         <div className="row justify-content-center">
                             
-                            <div className="col-lg-2 col-offset-lg-1 col-md-6">
+                            <div className="col-lg-3 col-md-6">
                                 <div className="single-publish text-center">
                                     <img src={require("../assets/img/p1.jpg")} className="img-fluid" alt="" />
                                         <div className="top">
@@ -27,38 +27,52 @@ class Feed extends Component {
                                         </div>
                                 </div>
                             </div>
-                            <div className="col-lg-2 col-md-6">
+                            
+                            <div className="col-lg-3 col-md-6">
                                 <div className="single-publish text-center">
-                                    <img src={require("../assets/img/p1.jpg")} className="img-fluid" alt="" />
-                                        <div className="top">
-                                            <h4 className="text-uppercase">Funds</h4>
-                                        </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-2 col-md-6">
-                                <div className="single-publish text-center">
-                                    <img src={require("../assets/img/p1.jpg")} className="img-fluid" alt="" />
+                                    <img src={require("../assets/img/p3.jpg")} className="img-fluid" alt="" />
                                         <div className="top">
                                         <h4 className="text-uppercase">Maps</h4>
                                         </div>
                                 </div>
                             </div>
-                            <div className="col-lg-2 col-md-6">
+                            <div className="col-lg-3 col-md-6">
                                 <div className="single-publish text-center">
-                                    <img src={require("../assets/img/p1.jpg")} className="img-fluid" alt="" />
+                                    <img src={require("../assets/img/p6.jpg")} className="img-fluid" alt="" />
                                         <div className="top">
-                                        <h4 className="text-uppercase">ChatBot</h4>
+                                        <h4 className="text-uppercase">Notifications</h4>
                                         </div>
                                 </div>
                             </div>
-                            <div className="col-lg-2 col-md-6">
+                            </div>
+                            <div className="row justify-content-center">
+                            <div className="col-lg-3 col-md-6">
                                 <div className="single-publish text-center">
-                                    <img src={require("../assets/img/p1.jpg")} className="img-fluid" alt="" />
+                                    <img src={require("../assets/img/p5.jpg")} className="img-fluid" alt="" />
                                         <div className="top">
                                         <h4 className="text-uppercase">Alerts</h4>
                                         </div>
                                 </div>
                             </div>
+                            <div className="col-lg-3 col-md-6">
+                                <div className="single-publish text-center">
+                                    <img src={require("../assets/img/p4.jpg")} className="img-fluid" alt="" />
+                                        <div className="top">
+                                        <h4 className="text-uppercase">ChatBot</h4>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                            <div className="col-lg-3 col-md-6">
+                                <div className="single-publish text-center">
+                                    <img src={require("../assets/img/p2.jpg")} className="img-fluid" alt="" />
+                                        <div className="top">
+                                            <h4 className="text-uppercase">Funds</h4>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                     </div>
                 </section>
