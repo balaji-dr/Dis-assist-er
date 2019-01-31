@@ -16,8 +16,8 @@ class AlertCard extends Component {
                        Alert
                     </Text>
                     <Text style={{color: "white"}}>
-                        {/*{this.props.alert.title}*/}
-                        Cyclone alert has been issued in you location.
+                        {this.props.alert.title}
+                        {/*Cyclone alert has been issued in you location.*/}
                     </Text>
                     </Body>
                 </CardItem>

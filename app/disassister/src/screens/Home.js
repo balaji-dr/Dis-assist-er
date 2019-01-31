@@ -36,7 +36,7 @@ class Home extends Component {
                 response: [{}]
             },
             disaster: {
-                response: [{}]
+                response: []
             }
         };
     }
