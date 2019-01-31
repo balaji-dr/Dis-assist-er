@@ -43,7 +43,7 @@ class Footer extends Component {
                                 <div className="single-footer-widget">
                                     <h6 className="text-white text-uppercase mb-20">Download the Android App</h6>
                                     <ul className="instafeed d-flex flex-wrap">
-                                        <a href="https://play.google.com" target="_blank">
+                                        <a href="https://drive.google.com/file/d/1gTb9_XHMJ_MckpDvRuOejxKP7SFIGp5b/view?usp=drivesdk" target="_blank">
                                         <li><img src={require("../assets/img/google-play-badge.png")} alt="" style={{width:200}}/></li>
                                         </a>
                                     </ul>

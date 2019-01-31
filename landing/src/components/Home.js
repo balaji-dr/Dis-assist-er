@@ -15,6 +15,8 @@ class Home extends Component {
                                 <div className="banner-content text-center">
                                     <p className="text-uppercase text-white">We assist during disaster</p>
                                     <h1 className="text-uppercase text-white">Dis - Assist - er</h1>
+                                    <br/>
+                                    <a href="https://www.youtube.com/watch?v=d18cG0YhQ0I&feature=youtu.be"><p className="text-uppercase text-white">Checkout our App video -></p></a>
                                 </div>
                             </div>
                         </div>
