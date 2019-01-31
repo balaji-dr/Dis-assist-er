@@ -13,6 +13,7 @@ def fetch_and_store_all_details():
 
     r = requests.get("https://disassister.centralus.cloudapp.azure.com/surviva/getHelpForMaps")
     data = r.json()
+    Issue.objects.all().delete()
     for each_post in data.get("details"):
         i, created = Issue.objects.get_or_create(description=each_post["probDesc"],
                                                 emotion=each_post["emotion"],
