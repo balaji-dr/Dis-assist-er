@@ -22,16 +22,14 @@ A unique solution aimed at providing all sorts of support for assisting disaster
 
 xxx
 
+## Technologies used
+- Languages: Js, Python3
+- Frameworks: React Native, Express, Django, Azure Bot Framework
+- Services: Azure Cognitive Services, QnA Maker
+
 ## Disassister Website
 
 https://disassister.centralus.cloudapp.azure.com/
 
-## Usage instructions (backend)
-- npm install
-- node surviva
-
-## Usage instructions (app)
-- npm install
-- react-native run-android
 
 
