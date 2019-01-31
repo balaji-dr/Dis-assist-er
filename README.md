@@ -1,8 +1,8 @@
 # Codefundo++
-Codefundo++ 2018-19 participation - Dis-assist-er
+Codefundo++ 2018-19 participation  Dis-Assist-er
 
 ## Description
-A unique solution aimed at providing all sorts of support for assisting disaster victms. During disaster times, people struggle to find help and people who are willing to help struggle to find legitimate source of need. Our app serves as a platform for connecting the volunteers and victims. It helps the victims post their helps and their problem is analysed and is given a specific emotion value which denotes the priority value of the problem. Volunteers can view these posts and reach out to them. They will see the posts according to the priority of the problem. They can also search for a particular category in which they are willing to help.
+  During disaster times, people struggle to find help and people who are willing to help struggle to find legitimate source of need. Our app serves as a platform for connecting the volunteers and victims. It helps the victims post their helps and their problem is analysed and is given a specific emotion value which denotes the priority value of the problem. Volunteers can view these posts and reach out to them. They will see the posts according to the priority of the problem. They can also search for a particular category in which they are willing to help.
   
 ## Features
 - Victims can ask for help which is categorized into Food, Shelter, Clothes, Medical.
@@ -20,7 +20,7 @@ A unique solution aimed at providing all sorts of support for assisting disaster
 
 ## Video URL
 
-xxx
+https://youtu.be/d18cG0YhQ0I
 
 ## Technologies used
 - Languages: Js, Python3
