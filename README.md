@@ -30,7 +30,7 @@ https://youtu.be/d18cG0YhQ0I
 https://github.com/deeaarbee/Dis-assist-er
 
 ## Disassister Website
-https://disassister.centralus.cloudapp.azure.com/
+https://dis-assist-er.centralus.cloudapp.azure.com/
 
 
 
