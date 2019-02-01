@@ -35,7 +35,7 @@ var instanceOAuthFb = axios.create({
 });
 
 var instanceSent = axios.create({
-    baseURL: 'https://eastasia.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
+    baseURL: 'https://centralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
 });
 /*
 PREDICTHQ.COM
@@ -132,9 +132,9 @@ router.post('/addHelp',async function(req,res,next){
             }]
         }; 
         desc = req.body.probDesc;
-        instanceDisaster.defaults.headers.common['Ocp-Apim-Subscription-Key'] = '810e478db8d14548aa32f228c027725a';
+        instanceSent.defaults.headers.common['Ocp-Apim-Subscription-Key'] = 'cb2dcd23ded445a199d85c7c1fd9b5a1';
         await instanceSent.post('/',documents).then(function(response){
-            //console.log(response.data.documents[0].score);
+            //console.log(response.data);
             emotionScore = response.data.documents[0].score;
             //res.status(200).send(response.data.documents[0].score.toString());
         }).catch(function(err){
@@ -544,7 +544,7 @@ async function getLocation(coordinates,callback){
             }
         }
         locality = sublocality.join();
-        console.log("In function"+locality);
+        //console.log("In function"+locality);
         callback(locality);
     });
 }
