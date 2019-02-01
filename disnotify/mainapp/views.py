@@ -20,7 +20,7 @@ class SetSigId(APIView):
             auth_token = data.get("token")
             sig_id = data.get("sig_id")
 
-            r = requests.get("https://disassister.centralus.cloudapp.azure.com/surviva/verifyToken",
+            r = requests.get("https://dis-assist-er.centralus.cloudapp.azure.com/surviva/verifyToken",
                              headers={"x-access-token": auth_token})
             data = r.json()
             print(data)

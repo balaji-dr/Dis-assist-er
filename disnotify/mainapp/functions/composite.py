@@ -5,13 +5,13 @@ from mainapp.functions.push import push
 
 
 def fetch_and_store_all_details():
-    r = requests.get("https://disassister.centralus.cloudapp.azure.com/surviva/getUsers")
+    r = requests.get("https://dis-assist-er.centralus.cloudapp.azure.com/surviva/getUsers")
     data = r.json()
     for each_user in data.get("details"):
         p, created = People.objects.get_or_create(name=each_user["name"], email=each_user["email"], user_id=each_user["_id"])
         p.save()
 
-    r = requests.get("https://disassister.centralus.cloudapp.azure.com/surviva/getHelpForMaps")
+    r = requests.get("https://dis-assist-er.centralus.cloudapp.azure.com/surviva/getHelpForMaps")
     data = r.json()
     Issue.objects.all().delete()
     for each_post in data.get("details"):
