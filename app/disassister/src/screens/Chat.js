@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { QnA_BOT_DL_KEY } from 'react-native-dotenv'
 
 const directLine = new DirectLine({
-    secret: QnA_BOT_DL_KEY
+    secret: "5pDGodqdl1I.cwA.DRc.hVp9Y51iK0cfb5TuOxNqVyeuaVVZUZEgzivPpIgiUD4"
 });
 
 const botMessageToGiftedMessage = botMessage => {
@@ -41,7 +41,7 @@ export default class Chat extends React.Component {
     constructor(props) {
         super(props);
         directLine.activity$
-            .filter(activity => activity.type === 'message' && activity.from.id === 'SurvivaQnABot')
+            .filter(activity => activity.type === 'message' && activity.from.id === '"survivabot"')
             .subscribe(botMessage => {
             const newMessage = botMessageToGiftedMessage(botMessage);
             this.setState({ messages: [newMessage, ...this.state.messages] });

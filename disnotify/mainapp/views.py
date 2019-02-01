@@ -108,6 +108,3 @@ class SuggestScreen(APIView):
                 "details": [],
                 "status": True
             }, content_type="application/json")
-
-
-
