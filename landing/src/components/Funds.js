@@ -39,7 +39,7 @@ class Funds extends Component {
         data.append("description", this.state.description);
         data.append("link", this.state.link);
 
-        fetch("https://disassister.centralus.cloudapp.azure.com/surviva/Fund/addFund", {
+        fetch("https://dis-assist-er.centralus.cloudapp.azure.com/surviva/Fund/addFund", {
             mode: 'no-cors',
             method: "POST",
             body: data
