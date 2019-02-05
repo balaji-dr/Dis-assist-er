@@ -27,7 +27,7 @@ router.post('/addFund', imageUpload.single('image'), function(req,res,next)  {
     var currentTime = Date();
     currentTime = currentTime.toString().slice(4,24);
 
-    var filename = "https://disassister.centralus.cloudapp.azure.com/surviva/"+ req.file.filename;
+    var filename = "https://dis-assist-er.centralus.cloudapp.azure.com/surviva/"+ req.file.filename;
 
     var formData = {
         title: req.body.title,
